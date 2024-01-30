@@ -11,7 +11,7 @@ This project interests me because of my experience in beekeeping where I volunte
 -	As a user, I want to be able to **remove** hives.
 -	As a user, I want to **view** all hives.
 
--	As a user, I want to specify the name of a hive.
+-	As a user, I want to specify the **name** of a hive.
 - As a user, I want to specify and know the **approximate color** of the honey produced.
 -	As a user, I want to specify a **primary pollen source**.
 -	As a user, I want to specify a **secondary pollen source** if a primary pollen source has already been specified.
