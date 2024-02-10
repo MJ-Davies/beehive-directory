@@ -15,4 +15,4 @@ This project interests me because of my experience in beekeeping where I volunte
 
 - As a user, I want to know **how many hives are of a specified color**.
 - As a user, I want to **filter by pollen source** in the order of primary, secondary, and irrelevant.
--	As a user, I want to **find the most common province or territory** where hives are located.
+-	As a user, I want to **find the number of hives in a unique location**.
