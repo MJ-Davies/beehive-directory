@@ -1,7 +1,8 @@
 package ui;
 
 import model.Hives;
-import java.util.LinkedList;
+import model.Hive;
+
 import java.util.Scanner;
 
 public class Directory {
@@ -37,9 +38,9 @@ public class Directory {
     //          if input is "add," then ask for name and location to add a hive using the addHive helper function
     //          if input is "remove," then ask for name and remove the hive using the removeHive helper function
     //          if input is "view," then returnAllHiveNames
-    //          if input is "edit," then !!!
+    //          if input is "edit," then go into the hive's editing interface with the enterEditHiveInterface function
     //          if none of the inputs were invalid, then print "Invalid input."
-    //          if the "add" or "remove" actions were ended early, end the process early
+    //          if input is null, end the method process early
     public void handleInput(String in) {
         if (in.equals("view")) {
             System.out.println(hives.returnAllHiveNames());
@@ -61,18 +62,18 @@ public class Directory {
         } else if (in.equals("remove")) {
             hives.removeHive(name);
         } else if (in.equals("edit")) {
-            // stub
-            System.out.println("edit");
+            Hive hive = hives.getListOfHives().get(hives.getPositionInHives(name));
+            EditInterface hiveInterface = new EditInterface(hive);
+            hiveInterface.enterEditHiveInterface(scanner);
         } else {
             System.out.println("Invalid input.");
         }
     }
 
     // EFFECT: returns the inputted name
-    //         if operation is add, the inputted name must not already exist and not be "stop",
-    //            otherwise prompt again for input
+    //         if operation is add, the inputted name must not already exist, otherwise prompt again for input
     //         if operation is not add, the inputted name must exist, otherwise prompt again for input
-    //         if the input is "stop," then end the process
+    //         if the input is "stop," then set name to null and end the process with no further actions performed
     public String getName(String operation) {
         String name = "";
 
@@ -87,7 +88,7 @@ public class Directory {
                 name = null;
                 break;
             }
-            if (!hives.hiveExists(name) && operation.equals("add") && name != "stop") {
+            if (!hives.hiveExists(name) && operation.equals("add")) {
                 break;
             } else if (hives.hiveExists(name) && (operation.equals("remove") || operation.equals("edit"))) {
                 break;
