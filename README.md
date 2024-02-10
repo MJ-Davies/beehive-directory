@@ -7,17 +7,11 @@ This project interests me because of my experience in beekeeping where I volunte
 
 
 ## User Stories
-- As a user, I want to be able to **add** hives and apply any required specifications including location and color of honey upon creation.
+- As a user, I want to be able to **add** hives and apply any required specifications including name and location.
 -	As a user, I want to be able to **remove** hives.
 -	As a user, I want to **view** all hives.
 
--	As a user, I want to specify the **name** of a hive.
-- As a user, I want to specify and know the **approximate color** of the honey produced.
--	As a user, I want to specify a **primary pollen source**.
--	As a user, I want to specify a **secondary pollen source** if a primary pollen source has already been specified.
--	As a user, I want to specify what **province or territory** the hive resides in.
--	As a user, I want to be able to add **additional notes** to a particular hive.
+-	As a user, I want to specify or overwrite the **name**, **location**, **color**, **primary pollen source**, **secondary pollen source**, and **additional notes** of a hive.
 
-- As a user, I want to know **how many hives are of a specified color**.
 - As a user, I want to **filter by pollen source** in the order of primary, secondary, and irrelevant.
--	As a user, I want to **find the most common province or territory** where hives are located.
+-	As a user, I want to **find the number of hives in a unique location**.
