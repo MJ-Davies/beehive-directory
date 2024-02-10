@@ -16,12 +16,12 @@ public class Directory {
         scanner.useDelimiter("\n"); // when the user adds a new line, the input is processed
     }
 
-    // EFFECTS: Runs the directory application
+    // EFFECTS: Runs the directory application by prompting for which actions the user wants to take
     public void runDirectory() {
         String input = "";
         while (true) {
             System.out.println("Welcome to the beehive directory, please select an action:"
-                    + "[add, remove, view, edit, quit]");
+                    + "[add, remove, view, edit, metrics, sort, quit]");
             input = scanner.next();
             System.out.println("You selected: " + input);
 
@@ -35,33 +35,48 @@ public class Directory {
     }
 
     // EFFECTS: Deciphers the action to perform depending on the input (in)
-    //          if input is "add," then ask for name and location to add a hive using the addHive helper function
-    //          if input is "remove," then ask for name and remove the hive using the removeHive helper function
-    //          if input is "view," then returnAllHiveNames
-    //          if input is "edit," then go into the hive's editing interface with the enterEditHiveInterface function
-    //          if none of the inputs were invalid, then print "Invalid input."
-    //          if input is null, end the method process early
+    //          if input is "view," then print all hive names using the returnAllHiveNames helper function
+    //          if input is "metrics," then request for metrics by using the requestMetrics helper function
+    //          if input is "sort," then start a request for sorting
+    //          if the input is not a part of the handleInputsNeedingNames, print "Invalid input."
+    //          if getName(in) is null, then end the process early
     public void handleInput(String in) {
         if (in.equals("view")) {
             System.out.println(hives.returnAllHiveNames());
             return;
-        }
-
-        String name = getName(in);
-
-        if (name == null) {
+        } else if (in.equals("metrics")) {
+            requestMetrics();
+            return;
+        } else if (in.equals("sort")) {
+            startSort();
+            return;
+        } else if (!in.equals("add") || !in.equals("remove") || !in.equals("edit")) {
+            System.out.println("Invalid input.");
             return;
         }
 
-        if (in.equals("add")) {
+        String name = getName(in);
+        if (name == null) {
+            return;
+        } else {
+            handleInputsNeedingNames(in, name);
+        }
+    }
+
+    // EFFECTS: Applies the directory action depending on the inputted action (action) and name (name)
+    //          if input is "add," then ask for name and location to add a hive using the addHive helper function
+    //          if input is "remove," then ask for name and remove the hive using the removeHive helper function
+    //          if input is "edit," then go into the hive's editing interface with the enterEditHiveInterface function
+    //          if none of the inputs were invalid, then print "Invalid input."
+    public void handleInputsNeedingNames(String action, String name) {
+        if (action.equals("add")) {
             String location = "";
             System.out.println("Type the location of the hive:");
             location = scanner.next();
-
             hives.addHive(name, location);
-        } else if (in.equals("remove")) {
+        } else if (action.equals("remove")) {
             hives.removeHive(name);
-        } else if (in.equals("edit")) {
+        } else if (action.equals("edit")) {
             Hive hive = hives.getListOfHives().get(hives.getPositionInHives(name));
             EditInterface hiveInterface = new EditInterface(hive);
             hiveInterface.enterEditHiveInterface(scanner);
@@ -70,9 +85,9 @@ public class Directory {
         }
     }
 
-    // EFFECT: returns the inputted name
-    //         if operation is add, the inputted name must not already exist, otherwise prompt again for input
-    //         if operation is not add, the inputted name must exist, otherwise prompt again for input
+    // EFFECT: requests the user for a hive name
+    //         if operation is add, the inputted hive name must not already exist, otherwise prompt again for input
+    //         if operation is not add, the inputted hive name must exist, otherwise prompt again for input
     //         if the input is "stop," then set name to null and end the process with no further actions performed
     public String getName(String operation) {
         String name = "";
@@ -100,5 +115,25 @@ public class Directory {
             }
         }
         return name;
+    }
+
+    // EFFECTS: Requests for the metrics (location) of this directory
+    public void requestMetrics() {
+        hives.printLocationMetrics();
+    }
+
+    // EFFECTS: Starts the process of sorting by requesting which type to sort by
+    //          if the type is "pollen source," then sortByPollen
+    public void startSort() {
+        System.out.println("Select the type of sort: [pollen source]");
+        String type = scanner.next();
+        if (type.equals("pollen source")) {
+            System.out.println("Select the type of pollen:");
+            String pollenType = scanner.next();
+            hives.sortByPollen(pollenType);
+            hives.viewPollens();
+        } else {
+            System.out.println("Invalid input.");
+        }
     }
 }

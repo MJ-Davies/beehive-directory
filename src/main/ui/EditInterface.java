@@ -12,7 +12,7 @@ public class EditInterface extends Directory {
         this.hive = h;
     }
 
-    // EFFECTS: Initiates the menu to edit this hive
+    // EFFECTS: Initiates the interface to edit this hive
     public void enterEditHiveInterface(Scanner scanner) {
         System.out.println("You are now editing the " + hive.getName() + " hive.");
         handleInput(scanner);
@@ -43,13 +43,15 @@ public class EditInterface extends Directory {
         }
     }
 
+    // EFFECTS: Manages which action to perform on the hive depending on the value inputted.
+    //          Depending on the input, edit*() is called.
     public void editDesiredField(String field, String value) {
         if (field.equals("name")) {
             editName(value);
         } else if (field.equals("location")) {
             editLocation(value);
         } else if (field.equals("color")) {
-            // stub
+            editColor(value);
         } else if (field.equals("primary pollen source")) {
             editPrimaryPollenSource(value);
         } else if (field.equals("secondary pollen source")) {
@@ -74,7 +76,10 @@ public class EditInterface extends Directory {
         hive.setLocation(location);
     }
 
-    //public void editColor !!! get bak to later
+    // EFFECTS: Changes the color field of the hive to be the color inputted
+    public void editColor(String color) {
+        hive.setColor(color);
+    }
 
     // EFFECTS: Changes the primary pollen source field of the hive to be the pollen inputted
     public void editPrimaryPollenSource(String pollen) {
