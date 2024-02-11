@@ -63,6 +63,7 @@ public class Directory {
         }
     }
 
+    // REQUIRES: action is "add" "remove," or "edit"
     // EFFECTS: Applies the directory action depending on the inputted action (action) and name (name)
     //          if input is "add," then ask for name and location to add a hive using the addHive helper function
     //          if input is "remove," then ask for name and remove the hive using the removeHive helper function
@@ -114,9 +115,9 @@ public class Directory {
         return name;
     }
 
-    // EFFECTS: Requests for the metrics (location) of this directory
+    // EFFECTS: Requests for the metrics (location, color, primary pollen, secondary pollen) of this directory
     public void requestMetrics() {
-        System.out.println(hives.returnLocationMetrics());
+        System.out.println(hives.returnMetrics());
     }
 
     // EFFECTS: Starts the process of sorting by requesting which type to sort by

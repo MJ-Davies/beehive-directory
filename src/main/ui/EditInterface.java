@@ -61,7 +61,7 @@ public class EditInterface extends Directory {
     }
 
     // EFFECTS: Changes the name field of the hive to be the name inputted
-    //          if the name is "exit" or "stop," stop process early, otherwise change the name
+    //          if the name is "exit" or "stop," stop process early as they are invalid names, otherwise change the name
     public void editName(String name) {
         if (name.equals("exit") || name.equals("stop")) {
             System.out.println("This is not a valid name!");
@@ -86,8 +86,8 @@ public class EditInterface extends Directory {
     }
 
     // EFFECTS: Changes the secondary pollen source field of the hive to be the pollen inputted
-    //          if the primary pollen source is not specified (null), stop the process early, otherwise change the
-    //             secondary pollen source
+    //          if the primary pollen source is "Unspecified", stop the process early, otherwise change the
+    //             secondary pollen source to the pollen inputted
     public void editSecondaryPollenSource(String pollen) {
         if (hive.getPrimaryPollen().equals("Unspecified")) {
             System.out.println("You cannot specify a secondary pollen source until "

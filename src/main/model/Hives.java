@@ -28,8 +28,9 @@ public class Hives {
         System.out.println(name + " has been removed from the directory.");
     }
 
+    // REQUIRES: Hive already exists with the same name
     // EFFECTS: Returns the zero-based index position of a hive given the name
-    //          if hive does not exist, return -1
+    //          otherwise, return -1
     public int getPositionInHives(String name) {
         for (Hive h: listOfHives) {
             if (h.getName().equals(name)) {
@@ -49,7 +50,7 @@ public class Hives {
         return false;
     }
 
-    // EFFECTS: Returns a concatenated String of all hive names in this directory
+    // EFFECTS: Returns a concatenated String of all hive names in this Hives
     public String returnAllHiveNames() {
         if (listOfHives.isEmpty()) {
             return "There are no hives in this directory.";
@@ -65,47 +66,34 @@ public class Hives {
         return result;
     }
 
-    // EFFECT: Return location value and number of frequency in the form of "Location: frequency"
+    // EFFECT: Return metrics (location, color, primary pollen, secondary pollen) of this hives
     //         if there are no hives, then return "No hives to view locations."
-    public String returnLocationMetrics() {
+    public String returnMetrics() {
         if (listOfHives.isEmpty()) {
-            return "No hives to view locations.";
+            return "No hives to obtain metrics from.";
         }
-        // uniqueLocations and frequencyOfLocations are in tandem
-        LinkedList<String> uniqueLocations = getDistinctStringX(Hive::getLocation);
-        LinkedList<Number> frequencyOfLocations = getFrequencyOfX(Hive::getLocation, uniqueLocations);
+        return getMetricX("LOCATIONS", Hive::getLocation)
+                + getMetricX("COLORS", Hive::getColorInString)
+                + getMetricX("PRIMARY POLLENS", Hive::getPrimaryPollen)
+                + getMetricX("SECONDARY POLLENS", Hive::getSecondaryPollen);
+    }
+
+    // EFFECTS: Return value X (X is a field of interest determined by getFunc, a higher order function)
+    //          and number of frequency in the form of "header: frequency"
+    public String getMetricX(String header, Function<Hive, String> getFunc) {
+        // uniqueX and frequencyOfX are in tandem
+        LinkedList<String> uniqueX = getDistinctStringX(getFunc);
+        LinkedList<Number> frequencyOfX = getFrequencyOfX(getFunc, uniqueX);
 
         String message = "";
-        for (int i = 0; i < uniqueLocations.size(); i++) {
-            String printLine = "";
-            message += uniqueLocations.get(i) + ": " + frequencyOfLocations.get(i) + "\n";
+        for (int i = 0; i < uniqueX.size(); i++) {
+            message += uniqueX.get(i) + ": " + frequencyOfX.get(i) + "\n";
         }
-        return "UNIQUE LOCATIONS: \n================\n" + message;
+        return header + ": \n================\n" + message;
     }
 
-    // MODIFIES: this
-    // EFFECT: Sorts hives by pollen in the order of primary, secondary, and irrelevant
-    public void sortByPollen(String type) {
-        LinkedList<Hive> updatedList = new LinkedList<Hive>();
-        int secondaryStartPos = 0;
-        for (Hive h:listOfHives) {
-
-            if (h.getPrimaryPollen().equals(type)) {
-                updatedList.addFirst(h);
-                secondaryStartPos++;
-            } else if (h.getSecondaryPollen().equals(type)) {
-                updatedList.add(secondaryStartPos, h);
-            } else {
-                updatedList.addLast(h);
-            }
-        }
-        listOfHives = updatedList;
-    }
-
-    // REQUIRES: getFunc returns a String
-    // EFFECTS: Returns a list of strings of the total amount of distinct X in a hive where X is the distinct field
-    //          being collected. getFunction is a higher order function
-    // source: https://stackoverflow.com/questions/29041708/high-order-functions-in-java
+    // EFFECTS: Returns a list of strings of the total amount of distinct X in a hive where X is the field of interest
+    //          being collected. getFunc is a higher order function
     public LinkedList<String> getDistinctStringX(Function<Hive, String> getFunc) {
         LinkedList<String> listX = new LinkedList<String>();
         for (Hive h:listOfHives) {
@@ -117,10 +105,8 @@ public class Hives {
         return listX;
     }
 
-    // REQUIRES: getFunc returns a value
     // EFFECTS: Returns a list of numbers of the amount of occurrences for each distinct X where X is the field of
-    //          interest
-    // source: https://stackoverflow.com/questions/29041708/high-order-functions-in-java
+    //          interest. getFunc is a higher order function
     public LinkedList<Number> getFrequencyOfX(Function<Hive, String> getFunc, LinkedList<String> distinctList) {
         LinkedList<Number> frequencyList = new LinkedList<Number>();
         for (String s:distinctList) {
@@ -135,8 +121,26 @@ public class Hives {
         return frequencyList;
     }
 
+    // MODIFIES: this
+    // EFFECT: Sorts hives by pollen in the order of primary, secondary, and irrelevant
+    public void sortByPollen(String type) {
+        LinkedList<Hive> updatedList = new LinkedList<Hive>();
+        int secondaryStartPos = 0;
+        for (Hive h:listOfHives) {
+            if (h.getPrimaryPollen().equals(type)) {
+                updatedList.addFirst(h);
+                secondaryStartPos++;
+            } else if (h.getSecondaryPollen().equals(type)) {
+                updatedList.add(secondaryStartPos, h);
+            } else {
+                updatedList.addLast(h);
+            }
+        }
+        listOfHives = updatedList;
+    }
+
     // EFFECTS: returns a string of the hive's name, primary pollen, and secondary pollen in the form of:
-    //          name: primaryPollen, secondaryPollen\n
+    //          "name: primaryPollen, secondaryPollen\n"
     //          If there are no hives, return "No hives to view pollen."
     public String viewPollens() {
         if (listOfHives.isEmpty()) {

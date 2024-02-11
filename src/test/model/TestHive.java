@@ -44,7 +44,7 @@ public class TestHive {
     public void testReturnAllFieldValues() {
         String message = "Name: " + mainHive.getName()
                 + "\n Location: " + mainHive.getLocation()
-                + "\n Color [golden, amber, light, dark, other]: " + mainHive.getColor().colorToString()
+                + "\n Color [golden, amber, light, dark, other]: " + mainHive.getColorInString()
                 + "\n Primary Pollen Source: " + mainHive.getPrimaryPollen()
                 + "\n Secondary Pollen Source: " + mainHive.getSecondaryPollen()
                 + "\n Notes: " + mainHive.getNotes();
@@ -77,5 +77,11 @@ public class TestHive {
         assertEquals(Color.OTHER, mainHive.getColor());
         mainHive.setColor("green");
         assertEquals(Color.OTHER, mainHive.getColor());
+    }
+
+    @Test
+    public void testGetColorInString() {
+        mainHive.setColor("golden");
+        assertEquals("golden", mainHive.getColorInString());
     }
 }

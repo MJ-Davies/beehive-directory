@@ -109,16 +109,25 @@ public class TestHives {
     }
 
     @Test
-    public void locationMetricsWithHives() {
-        String message = "UNIQUE LOCATIONS: \n================\n"
+    public void locationMetrics() {
+        String message = "LOCATIONS: \n================\n"
                 + "BC: 2\n"
                 + "Alberta: 1\n";
-        assertEquals(message, mainHive.returnLocationMetrics());
+        assertEquals(message, mainHive.getMetricX("LOCATIONS", Hive::getLocation));
     }
 
     @Test
-    public void locationMetricsWithoutHives() {
-        assertEquals("No hives to view locations.", emptyHive.returnLocationMetrics());
+    public void metricsWithoutHives() {
+        assertEquals("No hives to obtain metrics from.", emptyHive.returnMetrics());
+    }
+
+    @Test
+    public void metricsWithHives() {
+        String message = mainHive.getMetricX("LOCATIONS", Hive::getLocation)
+                + mainHive.getMetricX("COLORS", Hive::getColorInString)
+                + mainHive.getMetricX("PRIMARY POLLENS", Hive::getPrimaryPollen)
+                + mainHive.getMetricX("SECONDARY POLLENS", Hive::getSecondaryPollen);
+        assertEquals(message, mainHive.returnMetrics());
     }
 
     @Test

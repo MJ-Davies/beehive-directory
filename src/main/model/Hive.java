@@ -25,7 +25,7 @@ public class Hive {
     }
 
     // MODIFIES: this
-    // EFFECT: creates a list of all the hive fields present in this
+    // EFFECT: adds to availableFields of all the hive fields present in this
     public void addAllAvailableFields() {
         availableFields.add("name");
         availableFields.add("location");
@@ -35,7 +35,7 @@ public class Hive {
         availableFields.add("notes");
     }
 
-    // EFFECTS: prints all of the fields and their values into the console
+    // EFFECTS: returns all of the fields and their values into the console
     public String returnAllFieldValues() {
         return "Name: " + name
                 + "\n Location: " + location
@@ -95,6 +95,12 @@ public class Hive {
     }
 
     // getter methods:
+
+    // EFFECTS: Returns the color of Color type to string
+    public String getColorInString() {
+        return this.color.colorToString();
+    }
+
     public String getName() {
         return this.name;
     }
