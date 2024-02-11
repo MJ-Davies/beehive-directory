@@ -4,7 +4,7 @@ import model.Hive;
 import java.util.Scanner;
 
 public class EditInterface extends Directory {
-    private Hive hive;
+    private final Hive hive;
 
     // EFFECTS: Constructor for EditInterface with a given hive (h)
     public EditInterface(Hive h) {
@@ -21,14 +21,12 @@ public class EditInterface extends Directory {
     //          if the input is "exit," exit out of the method
     //          if the input is not an available field, print "Invalid input" and prompt again for another input
     public void handleInput(Scanner scanner) {
-        String fieldSelection = "";
-        String input = "";
         while (true) {
             System.out.println(hive.returnAllFieldValues());
             System.out.println("Select a field to edit (case sensitive): "
                     + "[name, location, color, primary pollen source, secondary pollen source, notes]"
                     + "\n enter 'exit' to stop editing this hive");
-            fieldSelection = scanner.next();
+            String fieldSelection = scanner.next();
             if (fieldSelection.equals("exit")) {
                 break;
             } else if (!hive.getAvailableFields().contains(fieldSelection)) {
@@ -36,7 +34,7 @@ public class EditInterface extends Directory {
                 continue;
             }
             System.out.println("Enter the " + fieldSelection + ":");
-            input = scanner.next();
+            String input = scanner.next();
 
             editDesiredField(fieldSelection, input);
         }

@@ -18,11 +18,10 @@ public class Directory {
 
     // EFFECTS: Runs the directory application by prompting for which actions the user wants to take
     public void runDirectory() {
-        String input = "";
         while (true) {
             System.out.println("Welcome to the beehive directory, please select an action:"
                     + "[add, remove, view, edit, metrics, sort, quit]");
-            input = scanner.next();
+            String input = scanner.next();
             System.out.println("You selected: " + input);
 
             if (input.equals("quit")) {
@@ -70,9 +69,8 @@ public class Directory {
     //          if input is "edit," then go into the hive's editing interface with the enterEditHiveInterface function
     public void handleInputsNeedingNames(String action, String name) {
         if (action.equals("add")) {
-            String location = "";
             System.out.println("Type the location of the hive:");
-            location = scanner.next();
+            String location = scanner.next();
             hives.addHive(name, location);
         } else if (action.equals("remove")) {
             hives.removeHive(name);
