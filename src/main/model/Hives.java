@@ -12,7 +12,8 @@ public class Hives {
 
     // REQUIRES: Hive does not already exist with same name
     // MODIFIES: this
-    // EFFECTS: Adds a hive with a valid name and location and prints a message declaring that hive has been added
+    // EFFECTS: Adds a hive to the end of the list with a valid name and location and prints a message declaring that
+    //          hive has been added
     public void addHive(String name, String location) {
         listOfHives.addLast(new Hive(name, location));
         System.out.println(name + " has been added to the directory.");
@@ -67,7 +68,7 @@ public class Hives {
     // EFFECT: Prints location value and number of frequency in the form of "Location: frequency"
     public void printLocationMetrics() {
         // uniqueLocations and frequencyOfLocations are in tandem
-        LinkedList<String> uniqueLocations = getDistinctX(Hive::getLocation);
+        LinkedList<String> uniqueLocations = getDistinctStringX(Hive::getLocation);
         LinkedList<Number> frequencyOfLocations = getFrequencyOfX(Hive::getLocation, uniqueLocations);
 
         String message = "";
@@ -81,9 +82,6 @@ public class Hives {
     // MODIFIES: this
     // EFFECT: Sorts hives by pollen in the order of primary, secondary, and irrelevant
     public void sortByPollen(String type) {
-        LinkedList<String> uniquePrimaryPollens = getDistinctX(Hive::getPrimaryPollen);
-        LinkedList<String> uniqueSecondaryPollens = getDistinctX(Hive::getSecondaryPollen);
-
         LinkedList<Hive> updatedList = new LinkedList<Hive>();
         int secondaryStartPos = 0;
         for (Hive h:listOfHives) {
@@ -101,11 +99,11 @@ public class Hives {
         listOfHives = updatedList;
     }
 
-    // REQUIRES: getFunc returns a value
+    // REQUIRES: getFunc returns a String
     // EFFECTS: Returns a list of strings of the total amount of distinct X in a hive where X is the distinct field
     //          being collected. getFunction is a higher order function
     // source: https://stackoverflow.com/questions/29041708/high-order-functions-in-java
-    public LinkedList<String> getDistinctX(Function<Hive, String> getFunc) {
+    public LinkedList<String> getDistinctStringX(Function<Hive, String> getFunc) {
         LinkedList<String> listX = new LinkedList<String>();
         for (Hive h:listOfHives) {
             String objectX = getFunc.apply(h);

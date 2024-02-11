@@ -38,7 +38,7 @@ public class Directory {
     //          if input is "view," then print all hive names using the returnAllHiveNames helper function
     //          if input is "metrics," then request for metrics by using the requestMetrics helper function
     //          if input is "sort," then start a request for sorting
-    //          if the input is not a part of the handleInputsNeedingNames, print "Invalid input."
+    //          if none of the inputs were invalid, then print "Invalid input."
     //          if getName(in) is null, then end the process early
     public void handleInput(String in) {
         if (in.equals("view")) {
@@ -50,16 +50,16 @@ public class Directory {
         } else if (in.equals("sort")) {
             startSort();
             return;
-        } else if (!in.equals("add") || !in.equals("remove") || !in.equals("edit")) {
+        } else if (in.equals("add") || in.equals("remove") || in.equals("edit")) {
+            String name = getName(in);
+            if (name == null) {
+                return;
+            } else {
+                handleInputsNeedingNames(in, name);
+            }
+        } else {
             System.out.println("Invalid input.");
             return;
-        }
-
-        String name = getName(in);
-        if (name == null) {
-            return;
-        } else {
-            handleInputsNeedingNames(in, name);
         }
     }
 
@@ -67,7 +67,6 @@ public class Directory {
     //          if input is "add," then ask for name and location to add a hive using the addHive helper function
     //          if input is "remove," then ask for name and remove the hive using the removeHive helper function
     //          if input is "edit," then go into the hive's editing interface with the enterEditHiveInterface function
-    //          if none of the inputs were invalid, then print "Invalid input."
     public void handleInputsNeedingNames(String action, String name) {
         if (action.equals("add")) {
             String location = "";
@@ -80,8 +79,6 @@ public class Directory {
             Hive hive = hives.getListOfHives().get(hives.getPositionInHives(name));
             EditInterface hiveInterface = new EditInterface(hive);
             hiveInterface.enterEditHiveInterface(scanner);
-        } else {
-            System.out.println("Invalid input.");
         }
     }
 
@@ -135,5 +132,10 @@ public class Directory {
         } else {
             System.out.println("Invalid input.");
         }
+    }
+
+    // getters:
+    public Hives getHives() {
+        return this.hives;
     }
 }
