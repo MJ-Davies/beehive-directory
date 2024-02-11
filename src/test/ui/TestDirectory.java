@@ -1,4 +1,4 @@
-package model;
+package ui;
 
 import model.Hives;
 import ui.Directory;

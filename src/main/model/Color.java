@@ -11,6 +11,7 @@ public enum Color {
 
     private final String name;
 
+    // EFFECTS: Constructor for the Color enumerator
     Color(String name) {
         this.name = name;
     }

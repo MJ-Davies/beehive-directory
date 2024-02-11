@@ -116,7 +116,7 @@ public class Directory {
 
     // EFFECTS: Requests for the metrics (location) of this directory
     public void requestMetrics() {
-        hives.printLocationMetrics();
+        System.out.println(hives.returnLocationMetrics());
     }
 
     // EFFECTS: Starts the process of sorting by requesting which type to sort by
@@ -128,7 +128,7 @@ public class Directory {
             System.out.println("Select the type of pollen:");
             String pollenType = scanner.next();
             hives.sortByPollen(pollenType);
-            hives.viewPollens();
+            System.out.println(hives.viewPollens());
         } else {
             System.out.println("Invalid input.");
         }

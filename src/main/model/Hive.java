@@ -36,13 +36,13 @@ public class Hive {
     }
 
     // EFFECTS: prints all of the fields and their values into the console
-    public void printAllFieldValues() {
-        System.out.println("Name: " + name
+    public String returnAllFieldValues() {
+        return "Name: " + name
                 + "\n Location: " + location
-                + "\n Color: " + color.colorToString()
+                + "\n Color [golden, amber, light, dark, other]: " + color.colorToString()
                 + "\n Primary Pollen Source: " + primaryPollenSource
                 + "\n Secondary Pollen Source: " + secondaryPollenSource
-                + "\n Notes: " + notes);
+                + "\n Notes: " + notes;
     }
 
     // setter methods:

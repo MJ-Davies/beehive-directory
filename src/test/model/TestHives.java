@@ -2,6 +2,7 @@ package model;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import java.util.LinkedList;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -108,6 +109,19 @@ public class TestHives {
     }
 
     @Test
+    public void locationMetricsWithHives() {
+        String message = "UNIQUE LOCATIONS: \n================\n"
+                + "BC: 2\n"
+                + "Alberta: 1\n";
+        assertEquals(message, mainHive.returnLocationMetrics());
+    }
+
+    @Test
+    public void locationMetricsWithoutHives() {
+        assertEquals("No hives to view locations.", emptyHive.returnLocationMetrics());
+    }
+
+    @Test
     public void sortByAFlower() {
         mainHive.sortByPollen("Wild flower");
         mainListOfHives = mainHive.getListOfHives();
@@ -143,5 +157,18 @@ public class TestHives {
         LinkedList<Number> freq = mainHive.getFrequencyOfX(Hive::getLocation, locations);
         assertEquals(2, freq.get(0));
         assertEquals(1, freq.get(1));
+    }
+
+    @Test
+    public void testViewPollensWithHives() {
+        String message = "Keke: Wild flower, Unspecified\n"
+                + "Loco: Sunflower, Lavender\n"
+                + "Mani: Lavender, Wild flower\n";
+        assertEquals(message, mainHive.viewPollens());
+    }
+
+    @Test
+    public void testViewPollensWithoutHives() {
+        assertEquals("No hives to view pollen.", emptyHive.viewPollens());
     }
 }

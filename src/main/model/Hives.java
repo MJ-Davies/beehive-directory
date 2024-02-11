@@ -65,8 +65,12 @@ public class Hives {
         return result;
     }
 
-    // EFFECT: Prints location value and number of frequency in the form of "Location: frequency"
-    public void printLocationMetrics() {
+    // EFFECT: Return location value and number of frequency in the form of "Location: frequency"
+    //         if there are no hives, then return "No hives to view locations."
+    public String returnLocationMetrics() {
+        if (listOfHives.isEmpty()) {
+            return "No hives to view locations.";
+        }
         // uniqueLocations and frequencyOfLocations are in tandem
         LinkedList<String> uniqueLocations = getDistinctStringX(Hive::getLocation);
         LinkedList<Number> frequencyOfLocations = getFrequencyOfX(Hive::getLocation, uniqueLocations);
@@ -76,7 +80,7 @@ public class Hives {
             String printLine = "";
             message += uniqueLocations.get(i) + ": " + frequencyOfLocations.get(i) + "\n";
         }
-        System.out.println("UNIQUE LOCATIONS: \n================\n" + message);
+        return "UNIQUE LOCATIONS: \n================\n" + message;
     }
 
     // MODIFIES: this
@@ -85,15 +89,14 @@ public class Hives {
         LinkedList<Hive> updatedList = new LinkedList<Hive>();
         int secondaryStartPos = 0;
         for (Hive h:listOfHives) {
-            Hive currentHive = h;
 
             if (h.getPrimaryPollen().equals(type)) {
-                updatedList.addFirst(currentHive);
+                updatedList.addFirst(h);
                 secondaryStartPos++;
             } else if (h.getSecondaryPollen().equals(type)) {
-                updatedList.add(secondaryStartPos, currentHive);
+                updatedList.add(secondaryStartPos, h);
             } else {
-                updatedList.addLast(currentHive);
+                updatedList.addLast(h);
             }
         }
         listOfHives = updatedList;
@@ -132,12 +135,18 @@ public class Hives {
         return frequencyList;
     }
 
-    public void viewPollens() {
+    // EFFECTS: returns a string of the hive's name, primary pollen, and secondary pollen in the form of:
+    //          name: primaryPollen, secondaryPollen\n
+    //          If there are no hives, return "No hives to view pollen."
+    public String viewPollens() {
+        if (listOfHives.isEmpty()) {
+            return "No hives to view pollen.";
+        }
         String message = "";
         for (Hive h:listOfHives) {
             message += h.getName() + ": " + h.getPrimaryPollen() + ", " + h.getSecondaryPollen() + "\n";
         }
-        System.out.println(message);
+        return message;
     }
 
     // getters:

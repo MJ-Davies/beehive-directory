@@ -2,7 +2,6 @@ package ui;
 
 import model.Hive;
 import java.util.Scanner;
-import java.util.LinkedList;
 
 public class EditInterface extends Directory {
     private Hive hive;
@@ -25,7 +24,7 @@ public class EditInterface extends Directory {
         String fieldSelection = "";
         String input = "";
         while (true) {
-            hive.printAllFieldValues();
+            System.out.println(hive.returnAllFieldValues());
             System.out.println("Select a field to edit (case sensitive): "
                     + "[name, location, color, primary pollen source, secondary pollen source, notes]"
                     + "\n enter 'exit' to stop editing this hive");
