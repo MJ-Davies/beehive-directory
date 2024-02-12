@@ -12,7 +12,7 @@ public class Hive {
 
     private LinkedList<String> availableFields;
 
-    // EFFECT: Constructs a hive with a specified name and location
+    // EFFECTS: Constructs a hive with a specified name and location
     public Hive(String name, String location) {
         this.name = name;
         this.location = location;
@@ -25,7 +25,7 @@ public class Hive {
     }
 
     // MODIFIES: this
-    // EFFECT: adds to availableFields of all the hive fields present in this
+    // EFFECTS: adds to availableFields of all the hive fields present in this
     public void addAllAvailableFields() {
         availableFields.add("name");
         availableFields.add("location");
@@ -82,6 +82,7 @@ public class Hive {
         this.primaryPollenSource = primaryPollenSource;
     }
 
+    // REQUIRES: primaryPollenSource is not Unspecified or null
     // MODIFIES: this
     // EFFECTS: sets the secondary pollen source of the Hive to be the inputted secondary pollen source
     public void setSecondaryPollenSource(String secondaryPollenSource) {

@@ -81,7 +81,7 @@ public class Directory {
         }
     }
 
-    // EFFECT: requests the user for a hive name
+    // EFFECTS: requests the user for a hive name
     //         if operation is add, the inputted hive name must not already exist, otherwise prompt again for input
     //         if operation is not add, the inputted hive name must exist, otherwise prompt again for input
     //         if the input is "stop," then set name to null and end the process with no further actions performed

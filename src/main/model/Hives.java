@@ -66,7 +66,7 @@ public class Hives {
         return result;
     }
 
-    // EFFECT: Return metrics (location, color, primary pollen, secondary pollen) of this hives
+    // EFFECTS: Return metrics (location, color, primary pollen, secondary pollen) of this hives
     //         if there are no hives, then return "No hives to view locations."
     public String returnMetrics() {
         if (listOfHives.isEmpty()) {
@@ -122,7 +122,7 @@ public class Hives {
     }
 
     // MODIFIES: this
-    // EFFECT: Sorts hives by pollen in the order of primary, secondary, and irrelevant
+    // EFFECTS: Sorts hives by pollen in the order of primary, secondary, and irrelevant
     public void sortByPollen(String type) {
         LinkedList<Hive> updatedList = new LinkedList<Hive>();
         int secondaryStartPos = 0;
