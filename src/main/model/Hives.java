@@ -11,7 +11,7 @@ public class Hives {
 
     // EFFECTS: Constructor for Hives
     public Hives() {
-        this.listOfHives = new LinkedList<Hive>();
+        this.listOfHives = new LinkedList<>();
     }
 
     // REQUIRES: Hive does not already exist with same name
@@ -54,25 +54,25 @@ public class Hives {
         return false;
     }
 
-    // EFFECTS: Returns a concatenated String of all hive names in this Hives
+    // EFFECTS: Returns a concatenated String of all hive names in this Hives with a comma delimiter
     //          if listOfHives is empty, then return "There are no hives in this directory"
     public String returnAllHiveNames() {
         if (listOfHives.isEmpty()) {
             return "There are no hives in this directory.";
         }
-        String result = "Hive names: ";
+        StringBuilder result = new StringBuilder("Hive names: ");
         for (Hive h: listOfHives) {
             if (listOfHives.size() == listOfHives.indexOf(h) + 1) {
-                result += h.getName();
+                result.append(h.getName());
             } else {
-                result += h.getName() + ", ";
+                result.append(h.getName()).append(", ");
             }
         }
-        return result;
+        return result.toString();
     }
 
     // EFFECTS: Return metrics (location, color, primary pollen, secondary pollen) of this hives
-    //          if there are no hives, then return "No hives to view locations."
+    //          if there are no hives, then return "No hives to obtain metrics from."
     public String returnMetrics() {
         if (listOfHives.isEmpty()) {
             return "No hives to obtain metrics from.";
@@ -90,9 +90,10 @@ public class Hives {
         LinkedList<String> uniqueX = getDistinctStringX(getFunc);
         LinkedList<Number> frequencyOfX = getFrequencyOfX(getFunc, uniqueX);
 
-        String message = "";
+        StringBuilder message = new StringBuilder();
         for (int i = 0; i < uniqueX.size(); i++) {
-            message += uniqueX.get(i) + ": " + frequencyOfX.get(i) + "\n";
+            String line = uniqueX.get(i) + ": " + frequencyOfX.get(i) + "\n";
+            message.append(line);
         }
         return header + ": \n================\n" + message;
     }
@@ -100,7 +101,7 @@ public class Hives {
     // EFFECTS: Returns a list of strings of the total amount of distinct X in a hive where X is the field of interest
     //          being collected. getFunc is a higher order function
     public LinkedList<String> getDistinctStringX(Function<Hive, String> getFunc) {
-        LinkedList<String> listX = new LinkedList<String>();
+        LinkedList<String> listX = new LinkedList<>();
         for (Hive h:listOfHives) {
             String objectX = getFunc.apply(h);
             if (!listX.contains(objectX)) {
@@ -113,7 +114,7 @@ public class Hives {
     // EFFECTS: Returns a list of numbers of the amount of occurrences for each distinct X where X is the field of
     //          interest. getFunc is a higher order function
     public LinkedList<Number> getFrequencyOfX(Function<Hive, String> getFunc, LinkedList<String> distinctList) {
-        LinkedList<Number> frequencyList = new LinkedList<Number>();
+        LinkedList<Number> frequencyList = new LinkedList<>();
         for (String s:distinctList) {
             int freq = 0;
             for (Hive h:listOfHives) {
@@ -129,7 +130,7 @@ public class Hives {
     // MODIFIES: this
     // EFFECTS: Sorts hives by pollen in the order of primary, secondary, and irrelevant
     public void sortByPollen(String type) {
-        LinkedList<Hive> updatedList = new LinkedList<Hive>();
+        LinkedList<Hive> updatedList = new LinkedList<>();
         int secondaryStartPos = 0;
         for (Hive h:listOfHives) {
             if (h.getPrimaryPollen().equals(type)) {
@@ -151,11 +152,12 @@ public class Hives {
         if (listOfHives.isEmpty()) {
             return "No hives to view pollen.";
         }
-        String message = "";
+        StringBuilder message = new StringBuilder();
         for (Hive h:listOfHives) {
-            message += h.getName() + ": " + h.getPrimaryPollen() + ", " + h.getSecondaryPollen() + "\n";
+            String line = h.getName() + ": " + h.getPrimaryPollen() + ", " + h.getSecondaryPollen() + "\n";
+            message.append(line);
         }
-        return message;
+        return message.toString();
     }
 
     // getters:

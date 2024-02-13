@@ -21,7 +21,7 @@ public class Directory {
     // EFFECTS: Runs the directory application by prompting for which actions the user wants to take
     public void runDirectory() {
         while (true) {
-            System.out.println("Welcome to the beehive directory, please select an action:"
+            System.out.println("Welcome to the beehive directory, please select an action: "
                     + "[add, remove, view, edit, metrics, sort, quit]");
             String input = scanner.next();
             System.out.println("You selected: " + input);
@@ -41,7 +41,7 @@ public class Directory {
     //          if input is "sort," then start a request for sorting
     //          if there are no hives and the input is remove or edit, end the process early
     //          if getName(in) is null, then end the process early
-    //          if none of the inputs were invalid, then print "Invalid input."
+    //          if none of the inputs were valid, then print "Invalid input."
     private void handleInput(String in) {
         if (in.equals("view")) {
             System.out.println(hives.returnAllHiveNames());
@@ -127,6 +127,7 @@ public class Directory {
 
     // EFFECTS: Starts the process of sorting by requesting which type to sort by
     //          if the type is "pollen source," then sortByPollen
+    //          otherwise, end the process early and print "Invalid input."
     private void startSort() {
         System.out.println("Select the type of sort: [pollen source]");
         String type = scanner.next();
