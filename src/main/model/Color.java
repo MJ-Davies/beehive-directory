@@ -2,6 +2,7 @@ package model;
 
 import java.util.LinkedList;
 
+// Represents the distinct values associated with the color of honey
 public enum Color {
     GOLDEN("golden"),
     AMBER("amber"),
@@ -16,6 +17,7 @@ public enum Color {
         this.name = name;
     }
 
+    // EFFECTS: Returns the string associated with the enumerator
     public String colorToString() {
         return this.name;
     }

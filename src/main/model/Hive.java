@@ -22,7 +22,7 @@ public class Hive {
         this.primaryPollenSource = "Unspecified";
         this.secondaryPollenSource = "Unspecified";
         this.notes = "Unspecified";
-        this.availableFields = new LinkedList<String>();
+        this.availableFields = new LinkedList<>();
         addAllAvailableFields();
     }
 
@@ -37,9 +37,10 @@ public class Hive {
         availableFields.add("notes");
     }
 
-    // EFFECTS: returns all of the fields and their values into the console
+    // EFFECTS: returns all of the fields and their values in the form of "field: value." Each field is separated on a
+    // new line
     public String returnAllFieldValues() {
-        return "Name: " + name
+        return " Name: " + name
                 + "\n Location: " + location
                 + "\n Color [golden, amber, light, dark, other]: " + color.colorToString()
                 + "\n Primary Pollen Source: " + primaryPollenSource
@@ -66,15 +67,15 @@ public class Hive {
     //          If the inputted color does not match any distinct values, color.OTHER is assigned.
     public void setColor(String col) {
         if (col.equals("golden")) {
-            this.color = color.GOLDEN;
+            this.color = Color.GOLDEN;
         } else if (col.equals("amber")) {
-            this.color = color.AMBER;
+            this.color = Color.AMBER;
         } else if (col.equals("light")) {
-            this.color = color.LIGHT;
+            this.color = Color.LIGHT;
         } else if (col.equals("dark")) {
-            this.color = color.DARK;
+            this.color = Color.DARK;
         } else {
-            this.color = color.OTHER;
+            this.color = Color.OTHER;
         }
     }
 

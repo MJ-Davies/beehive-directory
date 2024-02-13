@@ -43,6 +43,7 @@ public class EditInterface {
         }
     }
 
+    // REQUIRES: field is "name," "location," "color," "primary pollen source," "secondary pollen source," or "notes"
     // EFFECTS: Manages which action to perform on the hive depending on the value inputted.
     //          Depending on the input, edit*() is called.
     private void editDesiredField(String field, String value) {

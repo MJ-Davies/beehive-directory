@@ -42,7 +42,7 @@ public class HiveTest {
 
     @Test
     public void testReturnAllFieldValues() {
-        String message = "Name: " + mainHive.getName()
+        String message = " Name: " + mainHive.getName()
                 + "\n Location: " + mainHive.getLocation()
                 + "\n Color [golden, amber, light, dark, other]: " + mainHive.getColorInString()
                 + "\n Primary Pollen Source: " + mainHive.getPrimaryPollen()
