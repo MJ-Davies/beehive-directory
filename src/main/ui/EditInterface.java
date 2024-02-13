@@ -1,7 +1,6 @@
 package ui;
 
 import model.Hive;
-import java.util.Scanner;
 
 public class EditInterface extends Directory {
     private final Hive hive;
@@ -12,15 +11,15 @@ public class EditInterface extends Directory {
     }
 
     // EFFECTS: Initiates the interface to edit this hive
-    public void enterEditHiveInterface(Scanner scanner) {
+    public void enterEditHiveInterface() {
         System.out.println("You are now editing the " + hive.getName() + " hive.");
-        handleInput(scanner);
+        handleInput();
     }
 
     // EFFECTS: Deciphers the action to perform depending on the input
     //          if the input is "exit," exit out of the method
     //          if the input is not an available field, print "Invalid input" and prompt again for another input
-    private void handleInput(Scanner scanner) {
+    private void handleInput() {
         while (true) {
             System.out.println(hive.returnAllFieldValues());
             System.out.println("Select a field to edit (case sensitive): "
@@ -109,6 +108,7 @@ public class EditInterface extends Directory {
     }
 
     // getter method
+    // EFFECTS: returns the hive that is currently being edited
     public Hive getHive() {
         return this.hive;
     }

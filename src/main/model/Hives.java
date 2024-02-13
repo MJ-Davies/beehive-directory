@@ -154,6 +154,7 @@ public class Hives {
     }
 
     // getters:
+    // EFFECTS: returns the listOfHives in this instance of hives
     public LinkedList<Hive> getListOfHives() {
         return this.listOfHives;
     }

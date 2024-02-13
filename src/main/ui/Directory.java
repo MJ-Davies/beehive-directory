@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class Directory {
     private Hives hives;
-    private Scanner scanner; // this will scan the user input
+    protected Scanner scanner; // this will scan the user input
 
     // EFFECTS: Constructs a hive directory
     public Directory() {
@@ -67,7 +67,8 @@ public class Directory {
         }
     }
 
-    // REQUIRES: action is "add" "remove," or "edit"
+    // REQUIRES: action is "add," "remove," or "edit." If action is "remove" or "edit," then hives.getListOfHives() is
+    //           non-empty
     // EFFECTS: Applies the directory action depending on the inputted action (action) and name (name)
     //          if input is "add," then ask for name and location to add a hive using the addHive helper function
     //          if input is "remove," then ask for name and remove the hive using the removeHive helper function
@@ -82,7 +83,7 @@ public class Directory {
         } else if (action.equals("edit")) {
             Hive hive = hives.getListOfHives().get(hives.getPositionInHives(name));
             EditInterface hiveInterface = new EditInterface(hive);
-            hiveInterface.enterEditHiveInterface(scanner);
+            hiveInterface.enterEditHiveInterface();
         }
     }
 
@@ -139,6 +140,7 @@ public class Directory {
     }
 
     // getter methods:
+    // EFFECTS: returns the object "hives"
     public Hives getHives() {
         return this.hives;
     }

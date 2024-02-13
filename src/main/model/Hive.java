@@ -76,6 +76,8 @@ public class Hive {
         }
     }
 
+    // REQUIRES: primaryPollenSource input is not "Unspecified" when secondaryPollenSource is set to anything other than
+    //           "Unspecified"
     // MODIFIES: this
     // EFFECTS: sets the primary pollen source of the Hive to be the inputted primary pollen source
     public void setPrimaryPollenSource(String primaryPollenSource) {
@@ -102,30 +104,37 @@ public class Hive {
         return this.color.colorToString();
     }
 
+    // EFFECTS: Returns the name of this hive
     public String getName() {
         return this.name;
     }
 
+    // EFFECTS: Returns the location of this hive
     public String getLocation() {
         return this.location;
     }
 
+    // EFFECTS: Returns the color of this hive
     public Color getColor() {
         return this.color;
     }
 
+    // EFFECTS: Returns the primary pollen source of this hive
     public String getPrimaryPollen() {
         return this.primaryPollenSource;
     }
 
+    // EFFECTS: Returns the secondary pollen source of this hive
     public String getSecondaryPollen() {
         return this.secondaryPollenSource;
     }
 
+    // EFFECTS: Returns the notes of this hive
     public String getNotes() {
         return this.notes;
     }
 
+    // EFFECTS: Returns the available fields of this hive
     public LinkedList<String> getAvailableFields() {
         return this.availableFields;
     }
