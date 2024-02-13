@@ -9,7 +9,7 @@ import java.util.LinkedList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class TestHive {
+public class HiveTest {
     Hive mainHive;
 
     @BeforeEach

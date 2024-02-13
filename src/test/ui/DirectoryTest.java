@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class TestDirectory {
+class DirectoryTest {
     Directory mainDirectory;
 
     @BeforeEach

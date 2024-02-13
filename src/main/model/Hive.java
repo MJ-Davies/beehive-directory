@@ -2,6 +2,8 @@ package model;
 
 import java.util.LinkedList;
 
+// Hive represents a single unique hive which contains fields such as name, location, color, primary pollen source,
+// secondary pollen source, and notes. Mostly consists of simple getter and setter methods.
 public class Hive {
     private String name;
     private String location;
@@ -98,7 +100,6 @@ public class Hive {
     }
 
     // getter methods:
-
     // EFFECTS: Returns the color of Color type to string
     public String getColorInString() {
         return this.color.colorToString();

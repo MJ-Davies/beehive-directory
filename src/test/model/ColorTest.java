@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class TestColor {
+public class ColorTest {
     Color col;
 
     @BeforeEach

@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class TestEditInterface {
+public class EditInterfaceTest {
     private EditInterface ei;
     private Hive thisHive;
 

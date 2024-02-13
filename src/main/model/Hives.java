@@ -3,9 +3,13 @@ package model;
 import java.util.LinkedList;
 import java.util.function.Function;
 
+// Hives contains a list of hives, this class contains methods involving the modification of all the hives in a given
+// list or obtaining desired metrics or values including index position of hive and the frequency of certain fields
+// for all hives.
 public class Hives {
     private LinkedList<Hive> listOfHives;
 
+    // EFFECTS: Constructor for Hives
     public Hives() {
         this.listOfHives = new LinkedList<Hive>();
     }
@@ -51,6 +55,7 @@ public class Hives {
     }
 
     // EFFECTS: Returns a concatenated String of all hive names in this Hives
+    //          if listOfHives is empty, then return "There are no hives in this directory"
     public String returnAllHiveNames() {
         if (listOfHives.isEmpty()) {
             return "There are no hives in this directory.";

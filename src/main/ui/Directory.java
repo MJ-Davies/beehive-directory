@@ -5,6 +5,8 @@ import model.Hive;
 
 import java.util.Scanner;
 
+// The main interface that the hives directory runs on. Handles actions which are related to Hives (Hives contains a
+// list of hives) including add, remove, view, edit, get metrics, and sort.
 public class Directory {
     private Hives hives;
     protected Scanner scanner; // this will scan the user input
@@ -83,7 +85,7 @@ public class Directory {
         } else if (action.equals("edit")) {
             Hive hive = hives.getListOfHives().get(hives.getPositionInHives(name));
             EditInterface hiveInterface = new EditInterface(hive);
-            hiveInterface.enterEditHiveInterface();
+            hiveInterface.enterEditHiveInterface(scanner);
         }
     }
 
@@ -93,10 +95,6 @@ public class Directory {
     //         if the input is "stop," then set name to null and end the process with no further actions performed
     private String getName(String operation) {
         String name = "";
-
-        final String addMessage = "That hive name already exists";
-        final String removeOrEditMessage = "That hive name does not exist";
-
         while (true) {
             System.out.println(hives.returnAllHiveNames());
             System.out.println("Type the name of the hive (case sensitive), end this action by entering 'stop':");
@@ -104,16 +102,19 @@ public class Directory {
             if (name.equals("stop")) {
                 name = null;
                 break;
-            }
-            if (!hives.hiveExists(name) && operation.equals("add")) {
+            } else if (name.equals("exit")) {
+                // "exit" is an invalid name because it's a word used to interact with the program
+                System.out.println("Invalid name.");
+                continue;
+            } else if (!hives.hiveExists(name) && operation.equals("add")) {
                 break;
             } else if (hives.hiveExists(name) && (operation.equals("remove") || operation.equals("edit"))) {
                 break;
             }
             if (operation.equals("add")) {
-                System.out.println(addMessage + ", please pick another name.");
+                System.out.println("That hive name already exists, please pick another name.");
             } else {
-                System.out.println(removeOrEditMessage + ", please pick another name.");
+                System.out.println("That hive name does not exist, please pick another name.");
             }
         }
         return name;

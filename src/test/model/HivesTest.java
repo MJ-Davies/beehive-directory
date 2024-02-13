@@ -7,7 +7,7 @@ import java.util.LinkedList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class TestHives {
+public class HivesTest {
     Hives mainHive;
     LinkedList<Hive> mainListOfHives;
     Hives emptyHive;
