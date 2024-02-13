@@ -14,4 +14,4 @@ This project interests me because of my experience in beekeeping where I volunte
 -	As a user, I want to specify or overwrite the **name**, **location**, **color**, **primary pollen source**, **secondary pollen source**, and **additional notes** of a hive.
 
 - As a user, I want to **sort by a specified pollen source** in the order of primary, secondary, and irrelevant.
--	As a user, I want to **find the number of hives in a location, the number of hives with a color, the number of hives that have a primary pollen source, and the number of hives that have a secondary pollen source**.
+- As a user, I want to **obtain metrics of location, color, primary pollen sources, and secondary pollen sources** where the metric is the frequency of which each distinct value of each field is present in a directory.
