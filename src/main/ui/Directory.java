@@ -37,9 +37,10 @@ public class Directory {
     //          if input is "view," then print all hive names using the returnAllHiveNames helper function
     //          if input is "metrics," then request for metrics by using the requestMetrics helper function
     //          if input is "sort," then start a request for sorting
-    //          if none of the inputs were invalid, then print "Invalid input."
+    //          if there are no hives and the input is remove or edit, end the process early
     //          if getName(in) is null, then end the process early
-    public void handleInput(String in) {
+    //          if none of the inputs were invalid, then print "Invalid input."
+    private void handleInput(String in) {
         if (in.equals("view")) {
             System.out.println(hives.returnAllHiveNames());
             return;
@@ -48,6 +49,10 @@ public class Directory {
             return;
         } else if (in.equals("sort")) {
             startSort();
+            return;
+        } else if ((in.equals("remove") || in.equals("edit")) && hives.getListOfHives().size() == 0) {
+            // Handles remove and edit if there are no hives
+            System.out.println(hives.returnAllHiveNames());
             return;
         } else if (in.equals("add") || in.equals("remove") || in.equals("edit")) {
             String name = getName(in);
@@ -67,13 +72,13 @@ public class Directory {
     //          if input is "add," then ask for name and location to add a hive using the addHive helper function
     //          if input is "remove," then ask for name and remove the hive using the removeHive helper function
     //          if input is "edit," then go into the hive's editing interface with the enterEditHiveInterface function
-    public void handleInputsNeedingNames(String action, String name) {
+    private void handleInputsNeedingNames(String action, String name) {
         if (action.equals("add")) {
             System.out.println("Type the location of the hive:");
             String location = scanner.next();
-            hives.addHive(name, location);
+            System.out.println(hives.addHive(name, location));
         } else if (action.equals("remove")) {
-            hives.removeHive(name);
+            System.out.println(hives.removeHive(name));
         } else if (action.equals("edit")) {
             Hive hive = hives.getListOfHives().get(hives.getPositionInHives(name));
             EditInterface hiveInterface = new EditInterface(hive);
@@ -85,7 +90,7 @@ public class Directory {
     //         if operation is add, the inputted hive name must not already exist, otherwise prompt again for input
     //         if operation is not add, the inputted hive name must exist, otherwise prompt again for input
     //         if the input is "stop," then set name to null and end the process with no further actions performed
-    public String getName(String operation) {
+    private String getName(String operation) {
         String name = "";
 
         final String addMessage = "That hive name already exists";
@@ -114,13 +119,13 @@ public class Directory {
     }
 
     // EFFECTS: Requests for the metrics (location, color, primary pollen, secondary pollen) of this directory
-    public void requestMetrics() {
+    private void requestMetrics() {
         System.out.println(hives.returnMetrics());
     }
 
     // EFFECTS: Starts the process of sorting by requesting which type to sort by
     //          if the type is "pollen source," then sortByPollen
-    public void startSort() {
+    private void startSort() {
         System.out.println("Select the type of sort: [pollen source]");
         String type = scanner.next();
         if (type.equals("pollen source")) {
@@ -133,7 +138,7 @@ public class Directory {
         }
     }
 
-    // getters:
+    // getter methods:
     public Hives getHives() {
         return this.hives;
     }

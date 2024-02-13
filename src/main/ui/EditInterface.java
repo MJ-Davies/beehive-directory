@@ -20,7 +20,7 @@ public class EditInterface extends Directory {
     // EFFECTS: Deciphers the action to perform depending on the input
     //          if the input is "exit," exit out of the method
     //          if the input is not an available field, print "Invalid input" and prompt again for another input
-    public void handleInput(Scanner scanner) {
+    private void handleInput(Scanner scanner) {
         while (true) {
             System.out.println(hive.returnAllFieldValues());
             System.out.println("Select a field to edit (case sensitive): "
@@ -42,7 +42,7 @@ public class EditInterface extends Directory {
 
     // EFFECTS: Manages which action to perform on the hive depending on the value inputted.
     //          Depending on the input, edit*() is called.
-    public void editDesiredField(String field, String value) {
+    private void editDesiredField(String field, String value) {
         if (field.equals("name")) {
             editName(value);
         } else if (field.equals("location")) {
@@ -60,7 +60,7 @@ public class EditInterface extends Directory {
 
     // EFFECTS: Changes the name field of the hive to be the name inputted
     //          if the name is "exit" or "stop," stop process early as they are invalid names, otherwise change the name
-    public void editName(String name) {
+    private void editName(String name) {
         if (name.equals("exit") || name.equals("stop")) {
             System.out.println("This is not a valid name!");
         } else {
@@ -69,24 +69,32 @@ public class EditInterface extends Directory {
     }
 
     // EFFECTS: Changes the location field of the hive to be the location inputted
-    public void editLocation(String location) {
+    private void editLocation(String location) {
         hive.setLocation(location);
     }
 
     // EFFECTS: Changes the color field of the hive to be the color inputted
-    public void editColor(String color) {
+    private void editColor(String color) {
         hive.setColor(color);
     }
 
     // EFFECTS: Changes the primary pollen source field of the hive to be the pollen inputted
-    public void editPrimaryPollenSource(String pollen) {
-        hive.setPrimaryPollenSource(pollen);
+    //          if the user attempts to change the primary pollen source to "Unspecified" without changing the secondary
+    //             pollen source to "Unspecified" first, stop the process early
+    private void editPrimaryPollenSource(String pollen) {
+        if (hive.getSecondaryPollen().equals("Unspecified") && !pollen.equals("Unspecified")) {
+            hive.setPrimaryPollenSource(pollen);
+        } else {
+            System.out.println("You cannot change primary pollen source to 'Unspecified' until you have changed "
+                    + "secondary pollen source to 'Unspecified'.");
+        }
+
     }
 
     // EFFECTS: Changes the secondary pollen source field of the hive to be the pollen inputted
     //          if the primary pollen source is "Unspecified", stop the process early, otherwise change the
     //             secondary pollen source to the pollen inputted
-    public void editSecondaryPollenSource(String pollen) {
+    private void editSecondaryPollenSource(String pollen) {
         if (hive.getPrimaryPollen().equals("Unspecified")) {
             System.out.println("You cannot specify a secondary pollen source until "
                     + "you have specified a primary pollen source.");
@@ -96,7 +104,7 @@ public class EditInterface extends Directory {
     }
 
     // EFFECTS: Changes the notes field of the hive to be the note inputted
-    public void editNotes(String note) {
+    private void editNotes(String note) {
         hive.setNotes(note);
     }
 

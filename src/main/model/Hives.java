@@ -14,18 +14,18 @@ public class Hives {
     // MODIFIES: this
     // EFFECTS: Adds a hive to the end of the list with a valid name and location and prints a message declaring that
     //          hive has been added
-    public void addHive(String name, String location) {
+    public String addHive(String name, String location) {
         listOfHives.addLast(new Hive(name, location));
-        System.out.println(name + " has been added to the directory.");
+        return name + " has been added to the directory.";
     }
 
     // REQUIRES: Hive already exists with the same name
     // MODIFIES: this
     // EFFECTS: Removes a hive with the same name and prints a message declaring that hive has been removed
-    //         if name does not exist, print "Hive name does not exist."
-    public void removeHive(String name) {
+    //          if name does not exist, print "Hive name does not exist."
+    public String removeHive(String name) {
         listOfHives.remove(getPositionInHives(name));
-        System.out.println(name + " has been removed from the directory.");
+        return name + " has been removed from the directory.";
     }
 
     // REQUIRES: Hive already exists with the same name
@@ -67,7 +67,7 @@ public class Hives {
     }
 
     // EFFECTS: Return metrics (location, color, primary pollen, secondary pollen) of this hives
-    //         if there are no hives, then return "No hives to view locations."
+    //          if there are no hives, then return "No hives to view locations."
     public String returnMetrics() {
         if (listOfHives.isEmpty()) {
             return "No hives to obtain metrics from.";
