@@ -9,6 +9,7 @@ import java.util.Scanner;
 public class EditInterface {
     private final Hive hive;
 
+    // REQUIRES: hive (h) is not null
     // EFFECTS: Constructor for EditInterface with a given hive (h)
     public EditInterface(Hive h) {
         this.hive = h;
@@ -98,7 +99,7 @@ public class EditInterface {
 
     // EFFECTS: Changes the secondary pollen source field of the hive to be the pollen inputted
     //          if the primary pollen source is "Unspecified", stop the process early and print a message describing the
-    //          problem, otherwise change the secondary pollen source to the pollen inputted
+    //             problem, otherwise change the secondary pollen source to the pollen inputted
     private void editSecondaryPollenSource(String pollen) {
         if (hive.getPrimaryPollen().equals("Unspecified")) {
             System.out.println("You cannot specify a secondary pollen source until "

@@ -16,7 +16,7 @@ public class Hives {
 
     // REQUIRES: Hive does not already exist with same name
     // MODIFIES: this
-    // EFFECTS: Adds a hive to the end of the list with a valid name and location and prints a message declaring that
+    // EFFECTS: Adds a hive to the end of the list with a valid name and location and returns a message declaring that
     //          hive has been added
     public String addHive(String name, String location) {
         listOfHives.addLast(new Hive(name, location));
@@ -25,8 +25,7 @@ public class Hives {
 
     // REQUIRES: Hive already exists with the same name
     // MODIFIES: this
-    // EFFECTS: Removes a hive with the same name and prints a message declaring that hive has been removed
-    //          if name does not exist, print "Hive name does not exist."
+    // EFFECTS: Removes a hive with the same name and returns a message declaring that hive has been removed
     public String removeHive(String name) {
         listOfHives.remove(getPositionInHives(name));
         return name + " has been removed from the directory.";

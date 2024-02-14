@@ -39,7 +39,7 @@ public class Directory {
     //          if input is "view," then print all hive names using the returnAllHiveNames helper function
     //          if input is "metrics," then request for metrics by using the requestMetrics helper function
     //          if input is "sort," then start a request for sorting
-    //          if there are no hives and the input is remove or edit, end the process early
+    //          if there are no hives and the input is "remove" or "edit," end the process early
     //          if getName(in) is null, then end the process early
     //          if none of the inputs were valid, then print "Invalid input."
     private void handleInput(String in) {
@@ -69,8 +69,8 @@ public class Directory {
         }
     }
 
-    // REQUIRES: action is "add," "remove," or "edit." If action is "remove" or "edit," then hives.getListOfHives() is
-    //           non-empty
+    // REQUIRES: action is "add," "remove," or "edit." If action is "remove" or "edit," then hives.getListOfHives()
+    //           must be non-empty
     // EFFECTS: Applies the directory action depending on the inputted action (action) and name (name)
     //          if input is "add," then ask for name and location to add a hive using the addHive helper function
     //          if input is "remove," then ask for name and remove the hive using the removeHive helper function
@@ -90,9 +90,10 @@ public class Directory {
     }
 
     // EFFECTS: requests the user for a hive name
-    //         if operation is add, the inputted hive name must not already exist, otherwise prompt again for input
-    //         if operation is not add, the inputted hive name must exist, otherwise prompt again for input
-    //         if the input is "stop," then set name to null and end the process with no further actions performed
+    //          if operation is add, the inputted hive name must not already exist, otherwise prompt again for input
+    //          if operation is not add, the inputted hive name must exist, otherwise prompt again for input
+    //          if the input is "stop," then set name to null and end the process with no further actions performed
+    //          if the input is "exit," then print a message of it being an invalid name
     private String getName(String operation) {
         String name = "";
         while (true) {
@@ -120,7 +121,8 @@ public class Directory {
         return name;
     }
 
-    // EFFECTS: Requests for the metrics (location, color, primary pollen, secondary pollen) of this directory
+    // EFFECTS: Requests for the metrics (location, color, primary pollen, and secondary pollen of hives) of this
+    //          directory
     private void requestMetrics() {
         System.out.println(hives.returnMetrics());
     }

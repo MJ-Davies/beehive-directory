@@ -80,7 +80,7 @@ public class Hive {
     }
 
     // REQUIRES: primaryPollenSource input is not "Unspecified" when secondaryPollenSource is set to anything other than
-    //           "Unspecified"
+    //           "Unspecified" or null
     // MODIFIES: this
     // EFFECTS: sets the primary pollen source of the Hive to be the inputted primary pollen source
     public void setPrimaryPollenSource(String primaryPollenSource) {
