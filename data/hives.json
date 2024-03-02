@@ -1,18 +1,26 @@
 {"hives": [
     {
-        "notes": "Unspecified",
+        "notes": "First hive to exist.",
+        "color": "amber",
+        "secondaryPollenSource": "Lavender",
+        "name": "Hive1",
+        "location": "Alberta",
+        "primaryPollenSource": "Wild flower"
+    },
+    {
+        "notes": "Need pest control ASAP.",
         "color": "other",
         "secondaryPollenSource": "Unspecified",
-        "name": "Keke",
-        "location": "Keke",
-        "primaryPollenSource": "Unspecified"
+        "name": "Lola's Hive",
+        "location": "BC",
+        "primaryPollenSource": "Lavender"
     },
     {
         "notes": "Unspecified",
         "color": "other",
         "secondaryPollenSource": "Unspecified",
-        "name": "Lolo",
-        "location": "Lolo",
+        "name": "Peanut",
+        "location": "Alberta",
         "primaryPollenSource": "Unspecified"
     }
 ]}

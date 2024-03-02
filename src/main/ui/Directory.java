@@ -39,12 +39,21 @@ public class Directory {
             System.out.println("You selected: " + input);
 
             if (input.equals("quit")) {
-                System.out.println("Closing directory...");
+                quitDirectory();
                 break;
             }
 
             handleInput(input);
         }
+    }
+
+    public void quitDirectory() {
+        System.out.println("Would you like to save your hives? [type 'y' for yes, any key for no]");
+        String input = scanner.next();
+        if (input.equals("y")) {
+            saveHives();
+        }
+        System.out.println("Closing directory...");
     }
 
     // EFFECTS: Deciphers the action to perform on the directory depending on the input (in)
