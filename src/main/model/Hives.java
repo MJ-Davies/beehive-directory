@@ -1,12 +1,16 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.LinkedList;
 import java.util.function.Function;
 
 // Hives contains a list of hives, this class contains methods involving the modification of all the hives in a given
 // list or obtaining desired metrics or values including index position of hive and the frequency of certain fields
 // for all hives.
-public class Hives {
+public class Hives implements Writable {
     private LinkedList<Hive> listOfHives;
 
     // EFFECTS: Constructor for Hives
@@ -29,6 +33,12 @@ public class Hives {
     public String removeHive(String name) {
         listOfHives.remove(getPositionInHives(name));
         return name + " has been removed from the directory.";
+    }
+
+    // MODIFIES: this
+    // EFFECTS: Adds an already existing hive to listOfHives
+    public void addExistingHive(Hive h) {
+        listOfHives.addLast(h);
     }
 
     // REQUIRES: Hive already exists with the same name
@@ -157,6 +167,27 @@ public class Hives {
             message.append(line);
         }
         return message.toString();
+    }
+
+    // EFFECTS: Converts hives into a Json object
+    // Modeled from github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo/blob/master/src/main/model/WorkRoom.java
+    @Override
+    public JSONObject toJson() {
+        JSONObject hivesJsonObject = new JSONObject();
+        hivesJsonObject.put("hives", hiveToJson());
+        return hivesJsonObject;
+    }
+
+    // EFFECTS: Converts listOfHives into a Json array
+    // Modeled from github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo/blob/master/src/main/model/WorkRoom.java
+    public JSONArray hiveToJson() {
+        JSONArray hiveJsonArray = new JSONArray();
+
+        for (Hive h:listOfHives) {
+            hiveJsonArray.put(h.toJson());
+        }
+
+        return hiveJsonArray;
     }
 
     // getters:

@@ -2,27 +2,39 @@ package ui;
 
 import model.Hives;
 import model.Hive;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
 import java.util.Scanner;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 // The main interface that the hives directory runs on. Handles actions which are related to Hives (Hives contains a
 // list of hives) including add, remove, view, edit, get metrics, and sort.
 public class Directory {
+    private static final String JSON_FILE_DESTINATION = "./data/hives.json";
     private Hives hives;
-    protected Scanner scanner; // this will scan the user input
+    private Scanner scanner; // this will scan the user input
+    private JsonReader reader;
+    private JsonWriter writer;
 
     // EFFECTS: Constructs a hive directory
+    // Partially modeled from
+    // github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo/blob/master/src/main/ui/WorkRoomApp.java
     public Directory() {
         this.hives = new Hives();
         this.scanner = new Scanner(System.in);
         scanner.useDelimiter("\n"); // when the user adds a new line, the input is processed
+        writer = new JsonWriter(JSON_FILE_DESTINATION);
+        reader = new JsonReader(JSON_FILE_DESTINATION);
     }
 
     // EFFECTS: Runs the directory application by prompting for which actions the user wants to take
     public void runDirectory() {
         while (true) {
             System.out.println("Welcome to the beehive directory, please select an action: "
-                    + "[add, remove, view, edit, metrics, sort, quit]");
+                    + "[add, remove, view, edit, metrics, sort, save, load, quit]");
             String input = scanner.next();
             System.out.println("You selected: " + input);
 
@@ -35,14 +47,28 @@ public class Directory {
         }
     }
 
-    // EFFECTS: Deciphers the action to perform depending on the input (in)
+    // EFFECTS: Deciphers the action to perform on the directory depending on the input (in)
+    //          if input is "save", saveHives as a json
+    //          if input is "load", loadHives from json
+    //          Otherwise, move into handling hive operations
+    private void handleInput(String in) {
+        if (in.equals("save")) {
+            saveHives();
+        } else if (in.equals("load")) {
+            loadHives();
+        } else {
+            handleHiveOperations(in);
+        }
+    }
+
+    // EFFECTS: Deciphers the operation to perform on the hives depending on the input (in)
     //          if input is "view," then print all hive names using the returnAllHiveNames helper function
     //          if input is "metrics," then request for metrics by using the requestMetrics helper function
     //          if input is "sort," then start a request for sorting
     //          if there are no hives and the input is "remove" or "edit," end the process early
     //          if getName(in) is null, then end the process early
     //          if none of the inputs were valid, then print "Invalid input."
-    private void handleInput(String in) {
+    private void handleHiveOperations(String in) {
         if (in.equals("view")) {
             System.out.println(hives.returnAllHiveNames());
             return;
@@ -140,6 +166,31 @@ public class Directory {
             System.out.println(hives.viewPollens());
         } else {
             System.out.println("Invalid input.");
+        }
+    }
+
+    // EFFECTS: Saves the hives in this directory to file destination
+    // Modelled from github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo/blob/master/src/main/ui/WorkRoomApp.java
+    private void saveHives() {
+        try {
+            writer.open();
+            writer.write(hives);
+            writer.close();
+            System.out.println("Saved hives to " + JSON_FILE_DESTINATION);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_FILE_DESTINATION);
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: Loads hives from file destination
+    // Modelled from github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo/blob/master/src/main/ui/WorkRoomApp.java
+    private void loadHives() {
+        try {
+            hives = reader.read();
+            System.out.println("Loaded hives from " + JSON_FILE_DESTINATION);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_FILE_DESTINATION);
         }
     }
 

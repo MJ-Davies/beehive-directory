@@ -1,10 +1,13 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.LinkedList;
 
 // Hive represents a single unique hive which contains fields such as name, location, color, primary pollen source,
 // secondary pollen source, and notes. Mostly consists of simple getter and setter methods.
-public class Hive {
+public class Hive implements Writable {
     private String name;
     private String location;
     private Color color;
@@ -46,6 +49,20 @@ public class Hive {
                 + "\n Primary Pollen Source: " + primaryPollenSource
                 + "\n Secondary Pollen Source: " + secondaryPollenSource
                 + "\n Notes: " + notes;
+    }
+
+    // EFFECTS: Converts hive into a Json Object
+    // Modeled from github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo/blob/master/src/main/model/Thingy.java
+    @Override
+    public JSONObject toJson() {
+        JSONObject hiveJsonObject = new JSONObject();
+        hiveJsonObject.put("name", name);
+        hiveJsonObject.put("location", location);
+        hiveJsonObject.put("color", color.colorToString());
+        hiveJsonObject.put("primaryPollenSource", primaryPollenSource);
+        hiveJsonObject.put("secondaryPollenSource", secondaryPollenSource);
+        hiveJsonObject.put("notes", notes);
+        return hiveJsonObject;
     }
 
     // setter methods:
