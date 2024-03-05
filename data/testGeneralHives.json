@@ -1,0 +1,18 @@
+{"hives": [
+  {
+    "notes": "First hive",
+    "color": "amber",
+    "secondaryPollenSource": "Poppy",
+    "name": "Open hive",
+    "location": "Home",
+    "primaryPollenSource": "Sunflower"
+  },
+  {
+    "notes": "Inactive.",
+    "color": "other",
+    "secondaryPollenSource": "Unspecified",
+    "name": "My hive",
+    "location": "Greenland",
+    "primaryPollenSource": "Dandelion"
+  }
+]}

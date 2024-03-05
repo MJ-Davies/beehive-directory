@@ -77,6 +77,13 @@ public class HivesTest {
     }
 
     @Test
+    public void testAddExistingHive() {
+        Hive newHive = new Hive("Lol", "Lol");
+        emptyHive.addExistingHive(newHive);
+        assertEquals(1, emptyListOfHives.size());
+    }
+
+    @Test
     public void testRemoveHive() {
         assertEquals(3, mainListOfHives.size());
         mainHive.removeHive("Loco");
