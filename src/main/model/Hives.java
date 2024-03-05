@@ -10,6 +10,8 @@ import java.util.function.Function;
 // Hives contains a list of hives, this class contains methods involving the modification of all the hives in a given
 // list or obtaining desired metrics or values including index position of hive and the frequency of certain fields
 // for all hives.
+// Some methods were modeled from (related methods include this citation under their specifications)
+// github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo/blob/master/src/main/model/WorkRoom.java
 public class Hives implements Writable {
     private LinkedList<Hive> listOfHives;
 
@@ -169,7 +171,7 @@ public class Hives implements Writable {
         return message.toString();
     }
 
-    // EFFECTS: Converts hives into a Json object
+    // EFFECTS: Converts hives into a Json object, returns the Json object
     // Modeled from github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo/blob/master/src/main/model/WorkRoom.java
     @Override
     public JSONObject toJson() {
@@ -178,15 +180,13 @@ public class Hives implements Writable {
         return hivesJsonObject;
     }
 
-    // EFFECTS: Converts listOfHives into a Json array
+    // EFFECTS: Converts listOfHives into a Json array, returns the Json array
     // Modeled from github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo/blob/master/src/main/model/WorkRoom.java
     public JSONArray hiveToJson() {
         JSONArray hiveJsonArray = new JSONArray();
-
         for (Hive h:listOfHives) {
             hiveJsonArray.put(h.toJson());
         }
-
         return hiveJsonArray;
     }
 

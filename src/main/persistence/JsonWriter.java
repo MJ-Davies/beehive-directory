@@ -26,7 +26,7 @@ public class JsonWriter {
     }
 
     // MODIFIES: this
-    // EFFECTS: Writes hives represented as a JSon to the file.
+    // EFFECTS: Writes hives represented as a Json to the file.
     public void write(Hives wr) {
         JSONObject json = wr.toJson();
         saveToFile(json.toString(TAB));
@@ -39,7 +39,7 @@ public class JsonWriter {
     }
 
     // MODIFIES: this
-    // EFFECTS: Writes the Json string to the file at the designated destination from the open method
+    // EFFECTS: Writes the Json string to the file at the designated destination
     private void saveToFile(String json) {
         writer.print(json);
     }

@@ -12,6 +12,8 @@ import java.io.IOException;
 
 // The main interface that the hives directory runs on. Handles actions which are related to Hives (Hives contains a
 // list of hives) including add, remove, view, edit, get metrics, and sort.
+// Some method were modeled from (related methods include this citation under their specifications)
+// github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo/blob/master/src/main/ui/WorkRoomApp.java
 public class Directory {
     private static final String JSON_FILE_DESTINATION = "./data/hives.json";
     private Hives hives;
@@ -47,6 +49,7 @@ public class Directory {
         }
     }
 
+    // EFFECTS: Prompts the user to save before quitting
     public void quitDirectory() {
         System.out.println("Would you like to save your hives? [type 'y' for yes, any key for no]");
         String input = scanner.next();

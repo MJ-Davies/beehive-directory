@@ -41,7 +41,7 @@ public class JsonReader {
         return contentBuilder.toString();
     }
 
-    // EFFECTS: parses workroom from JSON object and returns it
+    // EFFECTS: parses workroom from JSON object and returns it as Hives
     private Hives parseHives(JSONObject jsonObject) {
         Hives h = new Hives();
         addHives(h, jsonObject);
