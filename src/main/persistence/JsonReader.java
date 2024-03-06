@@ -68,6 +68,7 @@ public class JsonReader {
         hives.addExistingHive(existingHive);
     }
 
+    // MODIFIES: hive
     // EFFECTS: parses hive from JSON object and sets the corresponding fields to the hive
     private void addExistingFields(Hive hive, JSONObject jsonObject) {
         String color = jsonObject.getString("color");
