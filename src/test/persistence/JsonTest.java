@@ -13,7 +13,7 @@ public class JsonTest {
                              String secondaryPollen, String notes) {
         assertEquals(name, hive.getName());
         assertEquals(location, hive.getLocation());
-        assertEquals(color, hive.getColor()); // !!!
+        assertEquals(color, hive.getColor());
         assertEquals(primaryPollen, hive.getPrimaryPollen());
         assertEquals(secondaryPollen, hive.getSecondaryPollen());
         assertEquals(notes, hive.getNotes());

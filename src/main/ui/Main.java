@@ -1,9 +1,12 @@
 package ui;
 
+import ui.graphics.DirectoryFrame;
+
 // Main program, initiates a Directory
 public class Main {
     public static void main(String[] args) {
-        Directory mainDirectory = new Directory();
-        mainDirectory.runDirectory();
+        new DirectoryFrame();
+        //Directory mainDirectory = new Directory(frame);
+        //mainDirectory.runDirectory();
     }
 }

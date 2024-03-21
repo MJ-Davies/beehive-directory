@@ -26,7 +26,7 @@ public class JsonReaderTest extends JsonTest {
     }
 
     @Test
-    void testReaderEmptyWorkRoom() {
+    void testReaderEmptyHives() {
         JsonReader reader = new JsonReader("./data/testEmptyHives.json");
         try {
             Hives hives = reader.read();
@@ -37,7 +37,7 @@ public class JsonReaderTest extends JsonTest {
     }
 
     @Test
-    void testReaderGeneralWorkRoom() {
+    void testReaderGeneralHives() {
         JsonReader reader = new JsonReader("./data/testGeneralHives.json");
         try {
             Hives hives = reader.read();

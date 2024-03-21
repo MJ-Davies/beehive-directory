@@ -35,7 +35,7 @@ public class JsonWriterTest extends JsonTest {
     }
 
     @Test
-    void testWriterEmptyWorkroom() {
+    void testWriterEmptyHives() {
         try {
             JsonWriter writer = new JsonWriter("./data/testWriteEmptyHives.json");
             writer.open();
@@ -51,7 +51,7 @@ public class JsonWriterTest extends JsonTest {
     }
 
     @Test
-    void testWriterGeneralWorkroom() {
+    void testWriterGeneralHives() {
         try {
             hives.addHive("Name1", "Location1");
             hives.addHive("Name2", "Location2");

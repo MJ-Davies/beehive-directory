@@ -4,11 +4,15 @@ import model.Hives;
 import model.Hive;
 import persistence.JsonReader;
 import persistence.JsonWriter;
+import ui.graphics.*;
 
 import java.util.Scanner;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+
+import javax.swing.*;
+import java.awt.*;
 
 // The main interface that the hives directory runs on. Handles actions which are related to Hives (Hives contains a
 // list of hives) including add, remove, view, edit, get metrics, and sort.
@@ -21,19 +25,23 @@ public class Directory {
     private JsonReader reader;
     private JsonWriter writer;
 
+    //private MyFrame thisFrame; // this is to make the MyFrame visible in Directory
+
     // EFFECTS: Constructs a hive directory
     // Partially modeled from
     // github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo/blob/master/src/main/ui/WorkRoomApp.java
     public Directory() {
         this.hives = new Hives();
         this.scanner = new Scanner(System.in);
-        scanner.useDelimiter("\n"); // when the user adds a new line, the input is processed
-        writer = new JsonWriter(JSON_FILE_DESTINATION);
-        reader = new JsonReader(JSON_FILE_DESTINATION);
+        this.scanner.useDelimiter("\n"); // when the user adds a new line, the input is processed
+        this.writer = new JsonWriter(JSON_FILE_DESTINATION);
+        this.reader = new JsonReader(JSON_FILE_DESTINATION);
+        //this.thisFrame = frame;
     }
 
     // EFFECTS: Runs the directory application by prompting for which actions the user wants to take
     public void runDirectory() {
+        //thisFrame.goToMainScreen();
         while (true) {
             System.out.println("Welcome to the beehive directory, please select an action: "
                     + "[add, remove, view, edit, metrics, sort, save, load, quit]");
