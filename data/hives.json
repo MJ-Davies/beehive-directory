@@ -1,34 +1,26 @@
 {"hives": [
-    {
-        "notes": "Unspecified",
-        "color": "other",
-        "secondaryPollenSource": "Unspecified",
-        "name": "Final Hive",
-        "location": "Iceland",
-        "primaryPollenSource": "Unspecified"
-    },
-    {
-        "notes": "Need pest control ASAP.",
-        "color": "other",
-        "secondaryPollenSource": "Unspecified",
-        "name": "Lola's Hive",
-        "location": "BC",
-        "primaryPollenSource": "Lavender"
-    },
-    {
-        "notes": "First hive to exist.",
-        "color": "light",
-        "secondaryPollenSource": "Lavender",
-        "name": "Hive1",
-        "location": "Alberta",
-        "primaryPollenSource": "Wild flower"
-    },
-    {
-        "notes": "Unspecified",
-        "color": "other",
-        "secondaryPollenSource": "Unspecified",
-        "name": "test",
-        "location": "test",
-        "primaryPollenSource": "Unspecified"
-    }
+  {
+    "notes": "Unspecified",
+    "color": "other",
+    "secondaryPollenSource": "Unspecified",
+    "name": "Final Hive",
+    "location": "Iceland",
+    "primaryPollenSource": "Unspecified"
+  },
+  {
+    "notes": "Need pest control ASAP.",
+    "color": "other",
+    "secondaryPollenSource": "Unspecified",
+    "name": "Lola's Hive",
+    "location": "BC",
+    "primaryPollenSource": "Lavender"
+  },
+  {
+    "notes": "First hive to exist.",
+    "color": "light",
+    "secondaryPollenSource": "Lavender",
+    "name": "Hive1",
+    "location": "Alberta",
+    "primaryPollenSource": "Wild flower"
+  }
 ]}
