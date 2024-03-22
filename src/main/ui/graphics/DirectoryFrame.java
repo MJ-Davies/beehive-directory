@@ -18,7 +18,7 @@ import java.io.IOException;
 // Code was modeled from https://youtu.be/Kmgo00avvEw?si=j-behtRv18UqwODt
 // Some method were modeled from (related methods include this citation under their specifications):
 // github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo/blob/master/src/main/ui/WorkRoomApp.java
-public class DirectoryFrame extends JFrame {
+public class DirectoryFrame extends JFrame implements Frames {
     private static final String JSON_FILE_DESTINATION = "./data/hives.json";
     private static final int WIDTH = 900;
     private static final int HEIGHT = 650;
@@ -26,7 +26,6 @@ public class DirectoryFrame extends JFrame {
     private Hives hives;
     private JsonReader reader;
     private JsonWriter writer;
-
 
     // EFFECTS: Constructor for DirectoryFrame
     public DirectoryFrame() {
@@ -149,6 +148,7 @@ public class DirectoryFrame extends JFrame {
         this.setVisible(true);
     }
 
+    // REQUIRES: body has a BorderLayout
     // MODIFIES: body
     // EFFECTS: Displays all the hives in hives
     public int addHiveListItems(JPanel body) {
@@ -191,7 +191,7 @@ public class DirectoryFrame extends JFrame {
     // MODIFIES: this
     // EFFECTS: Creates the edit screen
     public void goToEditScreen(Hive hive) {
-        // stub
+        new EditFrame(hive);
     }
 
     // Functionality methods:

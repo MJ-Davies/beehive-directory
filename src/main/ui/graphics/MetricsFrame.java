@@ -7,7 +7,7 @@ import java.awt.*;
 
 // Class for the metrics frame to display the metrics of each value in hives
 // Some methods have been modeled from https://stackoverflow.com/questions/26420428/how-to-word-wrap-text-in-jlabel
-public class MetricsFrame extends JFrame {
+public class MetricsFrame extends JFrame implements Frames {
     Hives hives;
 
     // EFFECTS: Constructor for MetricsFrame

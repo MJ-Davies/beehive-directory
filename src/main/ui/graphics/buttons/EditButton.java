@@ -12,7 +12,7 @@ public class EditButton extends MyButton {
     public EditButton(String text, DirectoryFrame frame, Hive hive) {
         super(text, frame);
         this.hive = hive;
-        this.addActionListener(e -> frame.goToEditScreen(hive));
+        this.addActionListener(e -> frame.goToEditScreen(this.hive));
     }
 
 
