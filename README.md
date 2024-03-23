@@ -20,6 +20,9 @@ This project interests me because of my experience in beekeeping where I volunte
 - As a user, I want to have the option to **load hives** to file, if chosen, from the main directory.
 - As a user, I want to prompt the user to **save before quitting** the program.
 
+# Instructions for Grader
+- 
+
 ## Sites Used
 - [Wikimedia](https://commons.wikimedia.org/wiki/File:OpenMoji-black_1F41D.svg) was used under Creative Commons License for logo.
 - Some code from [Bro Code JFrame tutorial](https://youtu.be/Kmgo00avvEw?si=dPZW_kdZlPOpXF3a) was used.
