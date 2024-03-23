@@ -83,19 +83,28 @@ public class EditFrame extends JFrame implements Frames {
     // MODIFIES: body
     // EFFECTS: Adds text fields and buttons for this frame
     public void addFields(JPanel body) {
-        HiveFields name = new NamePanel(0, 0, WIDTH, 50, this.hive, this.directory);
-        HiveFields location = new LocationPanel(0, 50, WIDTH, 50, this.hive, this.directory);
-        HiveFields color = new ColorPanel(0, 100, WIDTH, 50, this.hive, this.directory);
-        HiveFields primaryPollen = new PrimaryPollenPanel(0, 150, WIDTH, 50, this.hive,
+        HiveField name = new NamePanel(0, 0, WIDTH, 50, this.hive, this.directory);
+        HiveField location = new LocationPanel(0, 50, WIDTH, 50, this.hive, this.directory);
+        HiveField color = new ColorPanel(0, 100, WIDTH, 50, this.hive, this.directory);
+        HiveField primaryPollen = new PrimaryPollenPanel(0, 150, WIDTH, 50, this.hive,
                 this.directory);
-        HiveFields secondaryPollen = new SecondaryPollenPanel(0, 200, WIDTH, 50, this.hive,
+        HiveField secondaryPollen = new SecondaryPollenPanel(0, 200, WIDTH, 50, this.hive,
                 this.directory);
-        HiveFields notes = new NotesPanel(0, 250, WIDTH, 50, this.hive, this.directory);
+        HiveField notes = new NotesPanel(0, 250, WIDTH, 50, this.hive, this.directory);
         body.add(name);
         body.add(location);
         body.add(color);
         body.add(primaryPollen);
         body.add(secondaryPollen);
         body.add(notes);
+    }
+
+    // getter methods:
+    public Hive getHive() {
+        return this.hive;
+    }
+
+    public DirectoryFrame getDirectory() {
+        return this.directory;
     }
 }

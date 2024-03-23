@@ -8,14 +8,15 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 
 // Abstract class for all fields in this program, meant to represent the visual component of the edit frame
-public abstract class HiveFields extends JPanel {
+public abstract class HiveField extends JPanel {
+    protected static final String EMPTY_DEFAULT_MSG = "Unspecified";
     protected Hive hive;
     protected DirectoryFrame directory;
     private int width;
     private int height;
 
     // EFFECTS: Constructor for HiveFields
-    public HiveFields(int posX, int posY, int width, int height, Hive hive, DirectoryFrame directory) {
+    public HiveField(int posX, int posY, int width, int height, Hive hive, DirectoryFrame directory) {
         this.hive = hive;
         this.width = width;
         this.height = height;
@@ -43,6 +44,7 @@ public abstract class HiveFields extends JPanel {
         this.add(rightContainer);
     }
 
+    // REQUIRES: container has FlowLayout (default layout)
     // MODIFIES: container
     // EFFECTS: Adds the appropriate field name as a JLabel to container
     public void addFieldName(JPanel container) {
@@ -72,10 +74,26 @@ public abstract class HiveFields extends JPanel {
         container.add(confirm);
     }
 
+    // EFFECTS: Adds a message next to the field name that hive was edited successfully
+    public void confirmMessage(String fieldName) {
+        JOptionPane.showMessageDialog(null,
+                fieldName + " was edited successfully!",
+                "Successful Edit", JOptionPane.INFORMATION_MESSAGE);
+    }
+
     // EFFECTS: Abstract method for getting the current field value
     public abstract String fieldValue();
 
     // MODIFIES: this
     // EFFECTS: Abstract method for updating the current state of the text field for the field
     public abstract void updateField(ActionEvent e, JTextField input);
+
+    // getter methods:
+    public int getWidth() {
+        return this.width;
+    }
+
+    public int getHeight() {
+        return this.height;
+    }
 }

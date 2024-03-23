@@ -3,10 +3,10 @@ package ui.graphics.buttons;
 import ui.graphics.DirectoryFrame;
 
 // A button for removing a hive
-public class RemoveButton extends DirectoryButtons {
-    String nameOfHive;
+public class RemoveButton extends DirectoryButton {
+    private String nameOfHive;
 
-    // EFFECTS: Constructor for RemoveButton
+    // EFFECTS: Constructor for RemoveButton, removes this hive from the directory
     public RemoveButton(String text, DirectoryFrame frame, String name) {
         super(text, frame);
         this.nameOfHive = name;

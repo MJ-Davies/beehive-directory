@@ -7,7 +7,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 
 // Displays location field for the inputted hive and handles any additional requirements needed
-public class LocationPanel extends HiveFields {
+public class LocationPanel extends HiveField {
     // EFFECTS: Constructor for LocationPanel
     public LocationPanel(int posX, int posY, int width, int height, Hive hive, DirectoryFrame directory) {
         super(posX, posY, width, height, hive, directory);
@@ -27,9 +27,16 @@ public class LocationPanel extends HiveFields {
 
     // MODIFIES: this
     // EFFECTS: Sets the location of the hive to be the given input
+    //          If the input is an empty string, set to EMPTY_DEFAULT_MSG
     @Override
     public void updateField(ActionEvent e, JTextField input) {
-        hive.setLocation(input.getText());
-        directory.mainScreenBody();
+        if (input.getText().isEmpty()) {
+            hive.setLocation(EMPTY_DEFAULT_MSG);
+            input.setText(EMPTY_DEFAULT_MSG);
+        } else {
+            hive.setLocation(input.getText());
+        }
+        directory.updateMainScreenBody();
+        confirmMessage(getFieldName());
     }
 }

@@ -6,9 +6,8 @@ import javax.swing.*;
 import java.awt.*;
 
 // Class for the metrics frame to display the metrics of each value in hives
-// Some methods have been modeled from https://stackoverflow.com/questions/26420428/how-to-word-wrap-text-in-jlabel
 public class MetricsFrame extends JFrame implements Frames {
-    Hives hives;
+    private Hives hives;
 
     // EFFECTS: Constructor for MetricsFrame
     public MetricsFrame(Hives hives) {
@@ -22,13 +21,13 @@ public class MetricsFrame extends JFrame implements Frames {
     // MODIFIES: this
     // EFFECTS: Sets the frame specifications
     public void setFrameSpecs() {
-        this.setTitle("Beehive Directory - Metrics"); // creates the title
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // exit the application
-        this.setResizable(true); // prevents user from resizing the frame
+        this.setTitle("Beehive Directory - Metrics");
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setResizable(true);
         this.setLayout(null);
-        this.setSize(500, 300); // sets the x and y dimensions of the frame
-        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // closes only metrics when selected
-        this.getContentPane().setBackground(Color.white); // sets frame background
+        this.setSize(500, 300);
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        this.getContentPane().setBackground(Color.white);
     }
 
     // MODIFIES: this
@@ -42,7 +41,6 @@ public class MetricsFrame extends JFrame implements Frames {
 
     // MODIFIES: this
     // EFFECTS: Adds the metrics onto the frame
-    // Modeled from https://stackoverflow.com/questions/26420428/how-to-word-wrap-text-in-jlabel
     public void addText() {
         JTextArea label = new JTextArea();
         label.setBounds(0, 0, 500, 500);
@@ -53,5 +51,10 @@ public class MetricsFrame extends JFrame implements Frames {
         String message = hives.returnMetrics();
         label.setText(message);
         this.add(label);
+    }
+
+    // getter methods:
+    public Hives getHives() {
+        return this.hives;
     }
 }

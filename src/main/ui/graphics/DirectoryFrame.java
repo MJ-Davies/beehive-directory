@@ -5,12 +5,11 @@ import model.Hive;
 import persistence.JsonReader;
 import persistence.JsonWriter;
 import ui.graphics.buttons.*;
+import ui.graphics.window.DirectoryWindow;
 
 import javax.swing.*;
 import static javax.swing.ScrollPaneConstants.*;
 import java.awt.*;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
@@ -30,7 +29,6 @@ public class DirectoryFrame extends JFrame implements Frames {
     // EFFECTS: Constructor for DirectoryFrame
     public DirectoryFrame() {
         hives = new Hives();
-        hives.addHive("Yeyte", "Ko"); // !!!
         setFrameSpecs();
         goToMainScreen();
         setImageIcon();
@@ -61,40 +59,21 @@ public class DirectoryFrame extends JFrame implements Frames {
     }
 
     // MODIFIES: this
-    // EFFECTS: Sets the specification such that the user is prompted to save before closing
-    // Modeled from:
-    // https://stackoverflow.com/questions/20304329/how-to-save-before-exit-java
+    // EFFECTS: Sets the specification specified in the DirectoryWindow
     public void saveBeforeClosing() {
-        this.addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent we) {
-                int answer = JOptionPane.showOptionDialog(
-                        null,
-                        "Do you want to save before quitting?",
-                        "Save Before Quitting",
-                        JOptionPane.YES_NO_OPTION,
-                        JOptionPane.QUESTION_MESSAGE,
-                        null,
-                        null,
-                        0);
-                if (answer == 0) {
-                    saveHives();
-                }
-                System.exit(0);
-            }
-        });
+        this.addWindowListener(new DirectoryWindow(this));
     }
 
     // MODIFIES: this
     // EFFECTS: Creates the main directory screen
     public void goToMainScreen() {
-        mainScreenHeader();
-        mainScreenBody();
+        addMainScreenHeader();
+        updateMainScreenBody();
     }
 
     // MODIFIES: this
     // EFFECTS: Creates the header for the main directory screen
-    public void mainScreenHeader() {
+    public void addMainScreenHeader() {
         JPanel header = new JPanel();
         header.setBackground(Color.white);
         header.setBounds(0, 0, WIDTH, 60);
@@ -107,11 +86,11 @@ public class DirectoryFrame extends JFrame implements Frames {
     // MODIFIES: this
     // EFFECTS: Adds header buttons to this frame
     public void addHeaderButtons(JPanel header) {
-        DirectoryButtons add = new AddButton("Add", this);
-        DirectoryButtons metrics = new MetricsButton("Metrics", this);
-        DirectoryButtons sort = new SortButton("Sort", this);
-        DirectoryButtons save = new SaveButton("Save", this);
-        DirectoryButtons load = new LoadButton("Load", this);
+        DirectoryButton add = new AddButton("Add", this);
+        DirectoryButton metrics = new MetricsButton("Metrics", this);
+        DirectoryButton sort = new SortButton("Sort", this);
+        DirectoryButton save = new SaveButton("Save", this);
+        DirectoryButton load = new LoadButton("Load", this);
         header.add(add);
         header.add(metrics);
         header.add(sort);
@@ -121,11 +100,7 @@ public class DirectoryFrame extends JFrame implements Frames {
 
     // MODIFIES: this
     // EFFECTS: Creates the body panel to display all hives for the main directory screen
-    // Modeled from:
-    // https://stackoverflow.com/questions/9393480/java-jpanel-inside-jscrollpane
-    // https://stackoverflow.com/questions/2501861/how-can-i-remove-a-jpanel-from-a-jframe
-    // https://stackoverflow.com/questions/1727840/disable-horizontal-scroll-in-jscrollpane
-    public void mainScreenBody() {
+    public void updateMainScreenBody() {
         // this acts to update the main screen while not overlapping outdated old screens
         if (this.body != null) {
             this.remove(this.body);
@@ -164,6 +139,7 @@ public class DirectoryFrame extends JFrame implements Frames {
         return height;
     }
 
+    // REQUIRES: container is a FlowLayout (default layout)
     // MODIFIES: container
     // EFFECTS: Adds name, primary pollen, secondary pollen, remove button, and edit button for this hive element
     public void addHiveElements(Hive hive, JPanel container) {
@@ -189,8 +165,7 @@ public class DirectoryFrame extends JFrame implements Frames {
         container.add(rightContainer);
     }
 
-    // MODIFIES: this
-    // EFFECTS: Creates the edit screen
+    // EFFECTS: Creates the edit screen (new window) for the inputted hive
     public void goToEditScreen(Hive hive) {
         new EditFrame(hive, this);
     }
@@ -204,7 +179,7 @@ public class DirectoryFrame extends JFrame implements Frames {
             String location = JOptionPane.showInputDialog("Enter a location for the hive:");
             if (location != null) {
                 hives.addHive(name, location);
-                mainScreenBody();
+                updateMainScreenBody();
             }
         }
     }
@@ -213,7 +188,7 @@ public class DirectoryFrame extends JFrame implements Frames {
     // EFFECTS: Removes the selected hive
     public void removeHive(String name) {
         hives.removeHive(name);
-        mainScreenBody();
+        updateMainScreenBody();
         JOptionPane.showMessageDialog(null,
                 name + " was removed successfully!",
                 "Removed Successfully", JOptionPane.INFORMATION_MESSAGE);
@@ -226,8 +201,6 @@ public class DirectoryFrame extends JFrame implements Frames {
 
     // MODIFIES: this
     // EFFECTS: Prompts the user to sort by what field and sorts hives according to that field
-    // Modeled from:
-    // https://stackoverflow.com/questions/1257420/making-a-joptionpane-with-4-options
     public void sortHives() {
         String[] options = new String[] {"pollen source"};
         int answer = JOptionPane.showOptionDialog(null, "How would you like to sort by?",
@@ -236,7 +209,7 @@ public class DirectoryFrame extends JFrame implements Frames {
         if (answer == 0) {
             String pollen = JOptionPane.showInputDialog("Enter the pollen type (case sensitive):");
             hives.sortByPollen(pollen);
-            mainScreenBody();
+            updateMainScreenBody();
             JOptionPane.showMessageDialog(null,
                     "Hives are now sorted by " + pollen + ".",
                     "Sorted Successfully", JOptionPane.INFORMATION_MESSAGE);
@@ -266,7 +239,7 @@ public class DirectoryFrame extends JFrame implements Frames {
     public void loadHives() {
         try {
             hives = reader.read();
-            mainScreenBody();
+            updateMainScreenBody();
             JOptionPane.showMessageDialog(null,
                     "Loaded hives from " + JSON_FILE_DESTINATION,
                     "Loaded Successfully", JOptionPane.INFORMATION_MESSAGE);
@@ -280,5 +253,9 @@ public class DirectoryFrame extends JFrame implements Frames {
     // getter methods:
     public Hives getHives() {
         return this.hives;
+    }
+
+    public JPanel getBodyPanel() {
+        return this.body;
     }
 }
