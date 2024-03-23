@@ -23,7 +23,7 @@ This project interests me because of my experience in beekeeping where I volunte
 # Instructions for Grader
 - You can generate the first required action related to the user story "adding multiple Xs to a Y" by clicking the add button found in the header, entering a name and then a location where a hive will appear. Repeat this an arbitrary number of times (this must be repeated at least 11 times to trigger a scrollbar).
 - You can generate the second required action related to the user story "adding multiple Xs to a Y" by loading the program, clicking the sort button, selecting pollen source, entering 'Lavender', and observing the reordered list from primary pollen, secondary pollen, to irrelevant. The pollen sources can be found below the name of the hive in the format of:
-> Pollens: <primary pollen source>; <secondary pollen source>
+> Pollens: \<primary pollen source\>; \<secondary pollen source\>
 - You can locate my visual component by finding a logo on the top lefthand corner of the frame (in the header) upon first loading the program (the main directory). The same logo can also be observed in the window icon.
 - You can save the state of my application by clicking the save button found in the header, a message will appear to confirm the save. This can also be performed by clicking yes to the prompt after attempting to close the program.
 - You can reload the state of my application by clicking the load button found in the header, a message will appear to confirm a successful load; the program will now display all hives that were loaded.
