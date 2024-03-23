@@ -25,7 +25,7 @@ public class PrimaryPollenPanel extends HiveField {
         return hive.getPrimaryPollen();
     }
 
-    // MODIFIES: this
+    // MODIFIES: this, input
     // EFFECTS: Sets the primary pollen source of the hive to be the given input
     //          If the input is an empty string or EMPTY_DEFAULT_MSG and the secondary pollen source is unspecified,
     //             end the method early and show a warning message

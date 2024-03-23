@@ -25,7 +25,7 @@ public class LocationPanel extends HiveField {
         return hive.getLocation();
     }
 
-    // MODIFIES: this
+    // MODIFIES: this, input
     // EFFECTS: Sets the location of the hive to be the given input
     //          If the input is an empty string, set to EMPTY_DEFAULT_MSG
     @Override

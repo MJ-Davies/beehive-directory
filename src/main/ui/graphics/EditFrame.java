@@ -44,7 +44,6 @@ public class EditFrame extends JFrame implements Frames {
         this.setIconImage(image.getImage()); // changes icon of the frame
     }
 
-    // MODIFIES: this
     // EFFECTS: Initializes the elements/panels of this frame
     public void editingInterfaceSetup() {
         editingInterfaceHeader();

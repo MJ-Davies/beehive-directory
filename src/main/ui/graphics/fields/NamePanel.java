@@ -25,7 +25,7 @@ public class NamePanel extends HiveField {
         return hive.getName();
     }
 
-    // MODIFIES: this
+    // MODIFIES: this, input
     // EFFECTS: Sets the name of the hive to be the given input
     //          If the input is an empty string, set to EMPTY_DEFAULT_MSG
     @Override

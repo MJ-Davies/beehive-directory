@@ -25,7 +25,7 @@ public class NotesPanel extends HiveField {
         return hive.getNotes();
     }
 
-    // MODIFIES: this
+    // MODIFIES: this, input
     // EFFECTS: Sets the notes of the hive to be the given input
     //          If the input is an empty string, set to EMPTY_DEFAULT_MSG
     @Override

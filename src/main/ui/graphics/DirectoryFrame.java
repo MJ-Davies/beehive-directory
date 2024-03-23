@@ -7,9 +7,12 @@ import persistence.JsonWriter;
 import ui.graphics.buttons.*;
 import ui.graphics.window.DirectoryWindow;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import static javax.swing.ScrollPaneConstants.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
@@ -45,7 +48,7 @@ public class DirectoryFrame extends JFrame implements Frames {
         this.setResizable(false); // prevents user from resizing the frame
         this.setLayout(null);
         this.setSize(WIDTH, HEIGHT); // sets the x and y dimensions of the frame
-        this.getContentPane().setBackground(new Color(239, 237, 212)); // sets frame background
+        //this.getContentPane().setBackground(new Color(239, 237, 212)); // sets frame background
         saveBeforeClosing();
     }
 
@@ -64,7 +67,6 @@ public class DirectoryFrame extends JFrame implements Frames {
         this.addWindowListener(new DirectoryWindow(this));
     }
 
-    // MODIFIES: this
     // EFFECTS: Creates the main directory screen
     public void goToMainScreen() {
         addMainScreenHeader();
@@ -72,18 +74,32 @@ public class DirectoryFrame extends JFrame implements Frames {
     }
 
     // MODIFIES: this
-    // EFFECTS: Creates the header for the main directory screen
+    // EFFECTS: Creates the header for the main directory screen, includes logo and buttons
     public void addMainScreenHeader() {
         JPanel header = new JPanel();
+
+        // Creates logo
+        try {
+            BufferedImage img = ImageIO.read(new File("./src/main/ui/graphics/images/logo.png"));
+            JLabel container = new JLabel(new ImageIcon(img.getScaledInstance(50, 50, Image.SCALE_FAST)));
+            header.add(container);
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(null,
+                    "Could not load logo.",
+                    "Unexpected Error", JOptionPane.WARNING_MESSAGE);
+        }
+
         header.setBackground(Color.white);
         header.setBounds(0, 0, WIDTH, 60);
         header.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.black));
         header.setLayout(new FlowLayout(FlowLayout.LEFT, 25, 5));
+
         addHeaderButtons(header);
         this.add(header);
     }
 
-    // MODIFIES: this
+    // REQUIRES: header has a FlowLayout with its direction to the left
+    // MODIFIES: header
     // EFFECTS: Adds header buttons to this frame
     public void addHeaderButtons(JPanel header) {
         DirectoryButton add = new AddButton("Add", this);
@@ -99,7 +115,8 @@ public class DirectoryFrame extends JFrame implements Frames {
     }
 
     // MODIFIES: this
-    // EFFECTS: Creates the body panel to display all hives for the main directory screen
+    // EFFECTS: Creates and updates the body panel to display all hives for the main directory screen
+    //          body panel contains a scrollbar
     public void updateMainScreenBody() {
         // this acts to update the main screen while not overlapping outdated old screens
         if (this.body != null) {
@@ -178,9 +195,20 @@ public class DirectoryFrame extends JFrame implements Frames {
         if (name != null) {
             String location = JOptionPane.showInputDialog("Enter a location for the hive:");
             if (location != null) {
+                name = emptyStringChecker(name);
+                location = emptyStringChecker(location);
                 hives.addHive(name, location);
                 updateMainScreenBody();
             }
+        }
+    }
+
+    // EFFECTS: If the inputted string is empty, then
+    public String emptyStringChecker(String str) {
+        if (str.isEmpty()) {
+            return "Unspecified";
+        } else {
+            return str;
         }
     }
 
