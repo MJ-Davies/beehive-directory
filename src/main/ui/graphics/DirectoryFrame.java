@@ -107,11 +107,11 @@ public class DirectoryFrame extends JFrame implements Frames {
     // MODIFIES: this
     // EFFECTS: Adds header buttons to this frame
     public void addHeaderButtons(JPanel header) {
-        MyButton add = new AddButton("Add", this);
-        MyButton metrics = new MetricsButton("Metrics", this);
-        MyButton sort = new SortButton("Sort", this);
-        MyButton save = new SaveButton("Save", this);
-        MyButton load = new LoadButton("Load", this);
+        DirectoryButtons add = new AddButton("Add", this);
+        DirectoryButtons metrics = new MetricsButton("Metrics", this);
+        DirectoryButtons sort = new SortButton("Sort", this);
+        DirectoryButtons save = new SaveButton("Save", this);
+        DirectoryButtons load = new LoadButton("Load", this);
         header.add(add);
         header.add(metrics);
         header.add(sort);
@@ -168,8 +168,9 @@ public class DirectoryFrame extends JFrame implements Frames {
     // EFFECTS: Adds name, primary pollen, secondary pollen, remove button, and edit button for this hive element
     public void addHiveElements(Hive hive, JPanel container) {
         JPanel leftContainer = new JPanel();
-        leftContainer.setPreferredSize(new Dimension(200, 50));
+        leftContainer.setPreferredSize(new Dimension(300, 50));
         leftContainer.setBackground(Color.white);
+        leftContainer.setLayout(new GridLayout(2, 1));
 
         JPanel rightContainer = new JPanel();
         rightContainer.setPreferredSize(new Dimension(200, 50));
@@ -191,7 +192,7 @@ public class DirectoryFrame extends JFrame implements Frames {
     // MODIFIES: this
     // EFFECTS: Creates the edit screen
     public void goToEditScreen(Hive hive) {
-        new EditFrame(hive);
+        new EditFrame(hive, this);
     }
 
     // Functionality methods:

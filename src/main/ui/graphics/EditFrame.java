@@ -1,6 +1,7 @@
 package ui.graphics;
 
 import model.Hive;
+import ui.graphics.fields.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,10 +11,12 @@ public class EditFrame extends JFrame implements Frames {
     private static final int WIDTH = 800;
     private static final int HEIGHT = 550;
     private Hive hive;
+    private DirectoryFrame directory;
 
     // EFFECTS: Constructor for EditFrame
-    public EditFrame(Hive hive) {
+    public EditFrame(Hive hive, DirectoryFrame directory) {
         this.hive = hive;
+        this.directory = directory;
         setFrameSpecs();
         editingInterfaceSetup();
         setImageIcon();
@@ -80,6 +83,19 @@ public class EditFrame extends JFrame implements Frames {
     // MODIFIES: body
     // EFFECTS: Adds text fields and buttons for this frame
     public void addFields(JPanel body) {
-        // stub
+        HiveFields name = new NamePanel(0, 0, WIDTH, 50, this.hive, this.directory);
+        HiveFields location = new LocationPanel(0, 50, WIDTH, 50, this.hive, this.directory);
+        HiveFields color = new ColorPanel(0, 100, WIDTH, 50, this.hive, this.directory);
+        HiveFields primaryPollen = new PrimaryPollenPanel(0, 150, WIDTH, 50, this.hive,
+                this.directory);
+        HiveFields secondaryPollen = new SecondaryPollenPanel(0, 200, WIDTH, 50, this.hive,
+                this.directory);
+        HiveFields notes = new NotesPanel(0, 250, WIDTH, 50, this.hive, this.directory);
+        body.add(name);
+        body.add(location);
+        body.add(color);
+        body.add(primaryPollen);
+        body.add(secondaryPollen);
+        body.add(notes);
     }
 }

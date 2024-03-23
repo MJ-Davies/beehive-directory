@@ -5,7 +5,7 @@ import model.Hive;
 import ui.graphics.DirectoryFrame;
 
 // A button for editing a hive
-public class EditButton extends MyButton {
+public class EditButton extends DirectoryButtons {
     private Hive hive;
 
     // EFFECTS: Constructor for EditButton

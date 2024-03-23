@@ -3,7 +3,7 @@ package ui.graphics.buttons;
 import ui.graphics.DirectoryFrame;
 
 // Button for loading the file into the current program
-public class LoadButton extends MyButton {
+public class LoadButton extends DirectoryButtons {
     
     // EFFECTS: Constructor for LoadButton
     public LoadButton(String text, DirectoryFrame frame) {
