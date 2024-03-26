@@ -6,7 +6,7 @@ import ui.graphics.DirectoryFrame;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 
-// Displays name field for the inputted hive and handles any additional requirements needed
+// Displays name field for the inputted hive
 public class NamePanel extends HiveField {
     // EFFECTS: Constructor for NamePanel
     public NamePanel(int posX, int posY, int width, int height, Hive hive, DirectoryFrame directory) {

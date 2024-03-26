@@ -8,7 +8,8 @@ import java.awt.*;
 import java.util.LinkedList;
 import java.util.function.Function;
 
-// Class for the metrics frame to display the metrics of each value in hives
+// The metrics frame to display the metrics of each value in hives
+// Some methods have been modeled from https://stackoverflow.com/questions/26420428/how-to-word-wrap-text-in-jlabel
 public class MetricsFrame extends JFrame implements Frames {
     private static final int NUM_OF_COLUMNS = 4;
     private static final int COLUMN_WIDTH = 185;
@@ -55,8 +56,10 @@ public class MetricsFrame extends JFrame implements Frames {
         addColumn("Secondary Pollen Source", Hive::getSecondaryPollen, COLUMN_WIDTH * 3);
     }
 
+    // REQUIRES: this JFrame layout is set to null (absolute positioning)
     // MODIFIES: this
     // EFFECTS: Adds a column to this frame, metric is provided with the inputted header and getter method
+    // Modeled from https://stackoverflow.com/questions/26420428/how-to-word-wrap-text-in-jlabel
     public void addColumn(String headerName, Function<Hive, String> getFunc, int posX) {
         JPanel column = new JPanel();
         column.setLayout(null);
@@ -87,6 +90,7 @@ public class MetricsFrame extends JFrame implements Frames {
         this.add(column);
     }
 
+    // REQUIRES: header is a BorderLayout (default layout)
     // MODIFIES: header
     // EFFECTS: Formats the header with appropriate specifications
     public void formatHeader(JPanel header, String name) {

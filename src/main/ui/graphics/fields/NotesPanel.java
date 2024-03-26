@@ -6,7 +6,7 @@ import ui.graphics.DirectoryFrame;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 
-// Displays notes field for the inputted hive and handles any additional requirements needed
+// Displays notes field for the inputted hive
 public class NotesPanel extends HiveField {
     // EFFECTS: Constructor for NotesPanel
     public NotesPanel(int posX, int posY, int width, int height, Hive hive, DirectoryFrame directory) {

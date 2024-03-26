@@ -6,7 +6,7 @@ import ui.graphics.DirectoryFrame;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 
-// Displays location field for the inputted hive and handles any additional requirements needed
+// Displays location field for the inputted hive
 public class LocationPanel extends HiveField {
     // EFFECTS: Constructor for LocationPanel
     public LocationPanel(int posX, int posY, int width, int height, Hive hive, DirectoryFrame directory) {

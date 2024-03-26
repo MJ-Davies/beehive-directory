@@ -86,6 +86,7 @@ public abstract class HiveField extends JPanel {
 
     // MODIFIES: this
     // EFFECTS: Abstract method for updating the current state of the text field for the field
+    //          If the input is an empty string, set to EMPTY_DEFAULT_MSG
     public abstract void updateField(ActionEvent e, JTextField input);
 
     // getter methods:

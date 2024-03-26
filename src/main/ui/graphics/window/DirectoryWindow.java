@@ -7,6 +7,8 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 // Custom actions to do upon window modifications
+// Modeled from
+// https://stackoverflow.com/questions/20304329/how-to-save-before-exit-java
 public class DirectoryWindow extends WindowAdapter {
     private DirectoryFrame directory;
 

@@ -4,7 +4,7 @@ import model.Hive;
 
 import ui.graphics.DirectoryFrame;
 
-// A button for editing the hive inputted
+// Button for editing the hive inputted
 public class EditButton extends DirectoryButton {
     private Hive hive;
 

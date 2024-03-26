@@ -48,7 +48,6 @@ public class DirectoryFrame extends JFrame implements Frames {
         this.setResizable(false); // prevents user from resizing the frame
         this.setLayout(null);
         this.setSize(WIDTH, HEIGHT); // sets the x and y dimensions of the frame
-        //this.getContentPane().setBackground(new Color(239, 237, 212)); // sets frame background
         saveBeforeClosing();
     }
 
@@ -73,6 +72,7 @@ public class DirectoryFrame extends JFrame implements Frames {
         updateMainScreenBody();
     }
 
+    // REQUIRES: this JFrame layout is null (absolute positioning)
     // MODIFIES: this
     // EFFECTS: Creates the header for the main directory screen, includes logo and buttons
     public void addMainScreenHeader() {
@@ -114,9 +114,14 @@ public class DirectoryFrame extends JFrame implements Frames {
         header.add(load);
     }
 
+    // REQUIRES: this JFrame layout is null (absolute positioning)
     // MODIFIES: this
     // EFFECTS: Creates and updates the body panel to display all hives for the main directory screen
     //          body panel contains a scrollbar
+    // Modeled from:
+    // https://stackoverflow.com/questions/9393480/java-jpanel-inside-jscrollpane
+    // https://stackoverflow.com/questions/2501861/how-can-i-remove-a-jpanel-from-a-jframe
+    // https://stackoverflow.com/questions/1727840/disable-horizontal-scroll-in-jscrollpane
     public void updateMainScreenBody() {
         // this acts to update the main screen while not overlapping outdated old screens
         if (this.body != null) {
@@ -156,7 +161,7 @@ public class DirectoryFrame extends JFrame implements Frames {
         return height;
     }
 
-    // REQUIRES: container is a FlowLayout (default layout)
+    // REQUIRES: container is a BorderLayout (default layout)
     // MODIFIES: container
     // EFFECTS: Adds name, primary pollen, secondary pollen, remove button, and edit button for this hive element
     public void addHiveElements(Hive hive, JPanel container) {
@@ -229,6 +234,8 @@ public class DirectoryFrame extends JFrame implements Frames {
 
     // MODIFIES: this
     // EFFECTS: Prompts the user to sort by what field and sorts hives according to that field
+    // Modeled from:
+    // https://stackoverflow.com/questions/1257420/making-a-joptionpane-with-4-options
     public void sortHives() {
         String[] options = new String[] {"pollen source"};
         int answer = JOptionPane.showOptionDialog(null, "How would you like to sort by?",

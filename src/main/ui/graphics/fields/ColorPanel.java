@@ -7,7 +7,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
-// Displays color field for the inputted hive and handles any additional requirements needed
+// Displays color field for the inputted hive
 public class ColorPanel extends HiveField {
     // EFFECTS: Constructor for ColorPanel
     public ColorPanel(int posX, int posY, int width, int height, Hive hive, DirectoryFrame directory) {
