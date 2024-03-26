@@ -21,15 +21,16 @@ This project interests me because of my experience in beekeeping where I volunte
 - As a user, I want to prompt the user to **save before quitting** the program.
 
 # Instructions for Grader
-All user stories are realized.
-- To add multiple Xs to Y: Click the add button found in the header, enter a name and then a location then a hive will appear. Repeat this an arbitrary number of times (this must be repeated at least 11 times to trigger a scrollbar).
-- First related action: To sort, load the program, click the sort button, click 'pollen source,' and enter 'Lavender;' hives will now be sorted by primary pollen source, secondar pollen source, and irrelevant. Pollen sources can be viewed beneath the name of the hive, the format for pollen source is:
-> Pollens: *primary pollen source*; *secondary pollen source*
-- Second related action: To edit a hive, load the program, click edit of any hive, select a field, enter a new name, click confirm, exit out of the edit frame, re-edit the previously editted hive, and observe the changed field. Note that you cannot edit a secondary pollen source until you have specified a primary pollen source.
-- Visual component: Can be found at the top lefthand corner of the frame when first loading (the main directory).
-- Save state: Click the save button found in the header, a message will appear to confirm the save.
-- Load state: Click the load button found in the header, a message will appear to confirm a successful load; the program will now display all hives that were loaded.
+- You can generate the first required action related to the user story "adding multiple Xs to a Y" by clicking the `add` button found in the header, entering a name and then a location where a hive will appear. Repeat this an arbitrary number of times (this must be repeated at least 11 times to trigger a scrollbar. You can do this quickly by spamming `add`, `enter` key, `enter` key where the name and location will default to a value of `Unspecified`).
+- You can generate the second required action related to the user story "adding multiple Xs to a Y" by loading the program by clicking the `load` button, clicking the `sort` button, selecting `pollen source`, entering `Lavender`, and observing the reordered list from primary pollen, secondary pollen, to irrelevant. The pollen sources can be found below the name of the hive in the format of:
+> Pollens: \<primary pollen source\>; \<secondary pollen source\>
+- You can locate my visual component by finding a logo on the top lefthand corner of the frame (in the header) upon first running the program (the main directory). The same logo can also be observed in the window icon.
+- You can save the state of my application by clicking the `save` button found in the header, a message will appear to inform the user about the successful save. Saving can also be performed by clicking `yes` to the prompt after attempting to close the main window. To ensure that all fields have been correctly saved, you can edit the fields of a hive by clicking the `edit` button corresponding to the hive. Edit the fields by entering a unique value and clicking `confirm` <ins>for each field</ins>; exit the editting window, click the `save` button, and observe the change in `hives.json` or after re-running the program (re-run the program and click the `load` button).
+- You can reload the state of my application by clicking the `load` button found in the header, a message will appear to inform the user about the successful load; the program will now display all hives that were previously saved. To ensure that all fields have been correctly loaded, you can click the edit button of a hive and compare the field value to the `hives.json` value.
+
+*NOTE WHEN EDITING A HIVE: You cannot specify a secondary pollen source until you have specified a primary pollen source. Likewise, you cannot set a primary pollen source to* `Unspecified` *until you have changed the secondary pollen source to* `Unspecified`*.*
 
 ## Sites Used
 - [Wikimedia](https://commons.wikimedia.org/wiki/File:OpenMoji-black_1F41D.svg) was used under Creative Commons License for logo.
 - Some code from [Bro Code JFrame tutorial](https://youtu.be/Kmgo00avvEw?si=dPZW_kdZlPOpXF3a) was used.
+- StackOverflow citations can be found in the comments of the code (either beneath the specifications or in the class-level comment).
