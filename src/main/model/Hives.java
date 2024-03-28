@@ -26,7 +26,9 @@ public class Hives implements Writable {
     //          hive has been added
     public String addHive(String name, String location) {
         listOfHives.addLast(new Hive(name, location));
-        return name + " has been added to the directory.";
+        String logMsg = name + " has been added to the directory.";
+        EventLog.getInstance().logEvent(new Event(logMsg));
+        return logMsg;
     }
 
     // REQUIRES: Hive already exists with the same name
@@ -34,13 +36,16 @@ public class Hives implements Writable {
     // EFFECTS: Removes a hive with the same name and returns a message declaring that hive has been removed
     public String removeHive(String name) {
         listOfHives.remove(getPositionInHives(name));
-        return name + " has been removed from the directory.";
+        String logMsg = name + " has been removed from the directory.";
+        EventLog.getInstance().logEvent(new Event(logMsg));
+        return logMsg;
     }
 
     // MODIFIES: this
     // EFFECTS: Adds an already existing hive to listOfHives
     public void addExistingHive(Hive h) {
         listOfHives.addLast(h);
+        EventLog.getInstance().logEvent(new Event("Loaded " + h.getName() + " to the directory."));
     }
 
     // REQUIRES: Hive already exists with the same name
@@ -88,16 +93,21 @@ public class Hives implements Writable {
         if (listOfHives.isEmpty()) {
             return "No hives to obtain metrics from.";
         }
-        return getMetricX("LOCATIONS", Hive::getLocation)
-                + getMetricX("COLORS", Hive::getColorInString)
-                + getMetricX("PRIMARY POLLENS", Hive::getPrimaryPollen)
-                + getMetricX("SECONDARY POLLENS", Hive::getSecondaryPollen);
+        return getMetricXWithHeader("LOCATIONS", Hive::getLocation)
+                + getMetricXWithHeader("COLORS", Hive::getColorInString)
+                + getMetricXWithHeader("PRIMARY POLLENS", Hive::getPrimaryPollen)
+                + getMetricXWithHeader("SECONDARY POLLENS", Hive::getSecondaryPollen);
     }
 
     // EFFECTS: Return value X (X is a field of interest determined by getFunc, a higher order function)
-    //          and number of frequency in the form of "header: frequency"
-    public String getMetricX(String header, Function<Hive, String> getFunc) {
-        // uniqueX and frequencyOfX are in tandem
+    //          and number of frequency in the form of "value: frequency" with the appropriate header
+    public String getMetricXWithHeader(String header, Function<Hive, String> getFunc) {
+        return header + ": \n================\n" + getMetricX(getFunc, header);
+    }
+
+    // EFFECTS: Returns a string for the metrics of a given field specified by the get method (higher order function)
+    //          in the form of "value: frequency"
+    public String getMetricX(Function<Hive, String> getFunc, String metricName) {
         LinkedList<String> uniqueX = getDistinctStringX(getFunc);
         LinkedList<Number> frequencyOfX = getFrequencyOfX(getFunc, uniqueX);
 
@@ -106,7 +116,8 @@ public class Hives implements Writable {
             String line = uniqueX.get(i) + ": " + frequencyOfX.get(i) + "\n";
             message.append(line);
         }
-        return header + ": \n================\n" + message;
+        EventLog.getInstance().logEvent(new Event("The metrics of hives were collected for " + metricName));
+        return message + "";
     }
 
     // EFFECTS: Returns a list of strings of the total amount of distinct X in a hive where X is the field of interest
@@ -154,6 +165,7 @@ public class Hives implements Writable {
             }
         }
         listOfHives = updatedList;
+        EventLog.getInstance().logEvent(new Event("Sorted all hives by pollen source: " + type));
     }
 
     // EFFECTS: returns a string of the hive's name, primary pollen, and secondary pollen in the form of:
@@ -168,6 +180,7 @@ public class Hives implements Writable {
             String line = h.getName() + ": " + h.getPrimaryPollen() + ", " + h.getSecondaryPollen() + "\n";
             message.append(line);
         }
+        EventLog.getInstance().logEvent(new Event("Viewed all hives."));
         return message.toString();
     }
 
@@ -177,6 +190,7 @@ public class Hives implements Writable {
     public JSONObject toJson() {
         JSONObject hivesJsonObject = new JSONObject();
         hivesJsonObject.put("hives", hiveToJson());
+        EventLog.getInstance().logEvent(new Event("Saved all hives."));
         return hivesJsonObject;
     }
 

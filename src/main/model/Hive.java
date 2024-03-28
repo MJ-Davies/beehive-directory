@@ -69,12 +69,16 @@ public class Hive implements Writable {
     // MODIFIES: this
     // EFFECTS: sets the name of the Hive to be the inputted name
     public void setName(String name) {
+        EventLog.getInstance().logEvent(new Event("The name of " + this.name + " has been changed to "
+                + name));
         this.name = name;
     }
 
     // MODIFIES: this
     // EFFECTS: sets the location of the Hive to be the inputted location
     public void setLocation(String location) {
+        EventLog.getInstance().logEvent(new Event("The location of " + this.name + " has been changed to "
+                + location));
         this.location = location;
     }
 
@@ -94,6 +98,8 @@ public class Hive implements Writable {
         } else {
             this.color = Color.OTHER;
         }
+        EventLog.getInstance().logEvent(new Event("The color of " + this.name + " has been changed to "
+                + this.color.colorToString()));
     }
 
     // REQUIRES: primaryPollenSource input is not "Unspecified" when secondaryPollenSource is set to anything other than
@@ -101,6 +107,8 @@ public class Hive implements Writable {
     // MODIFIES: this
     // EFFECTS: sets the primary pollen source of the Hive to be the inputted primary pollen source
     public void setPrimaryPollenSource(String primaryPollenSource) {
+        EventLog.getInstance().logEvent(new Event("The primary pollen source of " + this.name
+                + " has been changed to " + primaryPollenSource));
         this.primaryPollenSource = primaryPollenSource;
     }
 
@@ -108,12 +116,16 @@ public class Hive implements Writable {
     // MODIFIES: this
     // EFFECTS: sets the secondary pollen source of the Hive to be the inputted secondary pollen source
     public void setSecondaryPollenSource(String secondaryPollenSource) {
+        EventLog.getInstance().logEvent(new Event("The secondary pollen source of " + this.name
+                + " has been changed to " + secondaryPollenSource));
         this.secondaryPollenSource = secondaryPollenSource;
     }
 
     // MODIFIES: this
     // EFFECTS: sets the notes of the Hive to be the inputted notes
     public void setNotes(String notes) {
+        EventLog.getInstance().logEvent(new Event("The notes of " + this.name + " has been changed to "
+                + notes));
         this.notes = notes;
     }
 

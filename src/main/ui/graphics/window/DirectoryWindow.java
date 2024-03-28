@@ -1,10 +1,13 @@
 package ui.graphics.window;
 
+import model.Event;
+import model.EventLog;
 import ui.graphics.DirectoryFrame;
 
 import javax.swing.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.Iterator;
 
 // Custom actions to do upon window modifications
 // Modeled from
@@ -32,6 +35,15 @@ public class DirectoryWindow extends WindowAdapter {
         if (answer == 0) {
             directory.saveHives();
         }
+        printEvents();
         System.exit(0);
+    }
+
+    // EFFECTS: Prints all the events that have been logged from EventLog
+    public void printEvents() {
+        Iterator<Event> events = EventLog.getInstance().iterator();
+        while (events.hasNext()) {
+            System.out.println(events.next().getDescription());
+        }
     }
 }

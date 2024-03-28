@@ -116,11 +116,17 @@ public class HivesTest {
     }
 
     @Test
-    public void locationMetrics() {
+    public void locationMetricsWithHeader() {
         String message = "LOCATIONS: \n================\n"
                 + "BC: 2\n"
                 + "Alberta: 1\n";
-        assertEquals(message, mainHive.getMetricX("LOCATIONS", Hive::getLocation));
+        assertEquals(message, mainHive.getMetricXWithHeader("LOCATIONS", Hive::getLocation));
+    }
+
+    @Test
+    public void locationMetricsWithoutHeader() {
+        String message = "BC: 2\nAlberta: 1\n";
+        assertEquals(message, mainHive.getMetricX(Hive::getLocation, "Location"));
     }
 
     @Test
@@ -130,10 +136,10 @@ public class HivesTest {
 
     @Test
     public void metricsWithHives() {
-        String message = mainHive.getMetricX("LOCATIONS", Hive::getLocation)
-                + mainHive.getMetricX("COLORS", Hive::getColorInString)
-                + mainHive.getMetricX("PRIMARY POLLENS", Hive::getPrimaryPollen)
-                + mainHive.getMetricX("SECONDARY POLLENS", Hive::getSecondaryPollen);
+        String message = mainHive.getMetricXWithHeader("LOCATIONS", Hive::getLocation)
+                + mainHive.getMetricXWithHeader("COLORS", Hive::getColorInString)
+                + mainHive.getMetricXWithHeader("PRIMARY POLLENS", Hive::getPrimaryPollen)
+                + mainHive.getMetricXWithHeader("SECONDARY POLLENS", Hive::getSecondaryPollen);
         assertEquals(message, mainHive.returnMetrics());
     }
 

@@ -5,7 +5,6 @@ import model.Hives;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.LinkedList;
 import java.util.function.Function;
 
 // The metrics frame to display the metrics of each value in hives
@@ -70,7 +69,7 @@ public class MetricsFrame extends JFrame implements Frames {
 
         JTextArea metricText = new JTextArea();
         metricText.setEditable(false);
-        metricText.setText(getText(getFunc));
+        metricText.setText(hives.getMetricX(getFunc, headerName));
         metricText.setLineWrap(false);
         int height = (int) metricText.getPreferredScrollableViewportSize().getHeight();
         metricText.setPreferredSize(new Dimension((int) metricText.getPreferredScrollableViewportSize().getWidth(),
@@ -98,20 +97,6 @@ public class MetricsFrame extends JFrame implements Frames {
         header.add(new JLabel(name));
         header.setBackground(Color.white);
         header.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.lightGray));
-    }
-
-    // EFFECTS: Returns a string for the metrics of a given field specified by the get method (higher order function)
-    //          in the form of "value: frequency"
-    public String getText(Function<Hive, String> getFunc) {
-        LinkedList<String> uniqueX = hives.getDistinctStringX(getFunc);
-        LinkedList<Number> frequencyOfX = hives.getFrequencyOfX(getFunc, uniqueX);
-
-        StringBuilder message = new StringBuilder();
-        for (int i = 0; i < uniqueX.size(); i++) {
-            String line = uniqueX.get(i) + ": " + frequencyOfX.get(i) + "\n";
-            message.append(line);
-        }
-        return message + "";
     }
 
     // getter methods:
