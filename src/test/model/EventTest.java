@@ -24,11 +24,11 @@ public class EventTest {
         d = Calendar.getInstance().getTime();   // (2)
     }
 
-//    @Test // uncomment later !!!
-//    public void testEvent() {
-//        assertEquals("Sensor open at door", e.getDescription());
-//        assertEquals(d, e.getDate());
-//    }
+    @Test
+    public void testEvent() {
+        assertEquals("Sensor open at door", e.getDescription());
+        assertEquals(d, e.getDate());
+    }
 
     @Test
     public void testToString() {

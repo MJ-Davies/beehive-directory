@@ -45,7 +45,8 @@ public class Hives implements Writable {
     // EFFECTS: Adds an already existing hive to listOfHives
     public void addExistingHive(Hive h) {
         listOfHives.addLast(h);
-        EventLog.getInstance().logEvent(new Event("Loaded " + h.getName() + " to the directory."));
+        EventLog.getInstance().logEvent(new Event("Loaded " + h.getName() + " with the location of "
+                + h.getLocation() + " to the directory."));
     }
 
     // REQUIRES: Hive already exists with the same name
