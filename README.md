@@ -30,6 +30,73 @@ This project interests me because of my experience in beekeeping where I volunte
 
 *NOTE WHEN EDITING A HIVE: You cannot specify a secondary pollen source until you have specified a primary pollen source. Likewise, you cannot set a primary pollen source to* `Unspecified` *until you have changed the secondary pollen source to* `Unspecified`*.*
 
+# Phase 4: Task 2
+## Events performed
+- Loaded hives.
+- Edited all fields of Hive 1.
+- Collected the metrics of all hives.
+
+## Sample
+> The color of Final Hive has been changed to other
+> 
+> The primary pollen source of Final Hive has been changed to Unspecified
+> 
+> The secondary pollen source of Final Hive has been changed to Unspecified
+> 
+> The notes of Final Hive has been changed to Unspecified
+> 
+> Loaded Final Hive with the location of Iceland to the directory.
+> 
+> The color of Lola's Hive has been changed to other
+> 
+> The primary pollen source of Lola's Hive has been changed to Lavender
+> 
+> The secondary pollen source of Lola's Hive has been changed to Unspecified
+> 
+> The notes of Lola's Hive has been changed to Need pest control ASAP.
+> 
+> Loaded Lola's Hive with the location of BC to the directory.
+> 
+> The color of Hive1 has been changed to light
+> 
+> The primary pollen source of Hive1 has been changed to Wild flower
+> 
+> The secondary pollen source of Hive1 has been changed to Lavender
+> 
+> The notes of Hive1 has been changed to First hive to exist.
+> 
+> Loaded Hive1 with the location of Alberta to the directory.
+> 
+> The color of Kirb has been changed to golden
+> 
+> The primary pollen source of Kirb has been changed to Blue Orchid
+> 
+> The secondary pollen source of Kirb has been changed to Blossom
+> 
+> The notes of Kirb has been changed to Reference!?!?
+> 
+> Loaded Kirb with the location of Japan to the directory.
+> 
+> The name of Final Hive has been changed to Edited Name
+> 
+> The location of Edited Name has been changed to Edited Location
+> 
+> The color of Edited Name has been changed to golden
+> 
+> The primary pollen source of Edited Name has been changed to Edited Primary Pollen
+> 
+> The secondary pollen source of Edited Name has been changed to Edited Secondary Pollen
+> 
+> The notes of Edited Name has been changed to Edited Notes
+> 
+> The metrics of hives were collected for Location
+> 
+> The metrics of hives were collected for Color
+> 
+> The metrics of hives were collected for Primary Pollen Source
+> 
+> The metrics of hives were collected for Secondary Pollen Source
+
 ## Sites Used
 - [Wikimedia](https://commons.wikimedia.org/wiki/File:OpenMoji-black_1F41D.svg) was used under Creative Commons License for logo.
 - Some code from [Bro Code JFrame tutorial](https://youtu.be/Kmgo00avvEw?si=dPZW_kdZlPOpXF3a) was used.
