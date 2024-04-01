@@ -31,7 +31,7 @@ This project interests me because of my experience in beekeeping where I volunte
 *NOTE WHEN EDITING A HIVE: You cannot specify a secondary pollen source until you have specified a primary pollen source. Likewise, you cannot set a primary pollen source to* `Unspecified` *until you have changed the secondary pollen source to* `Unspecified`*.*
 
 ## Phase 4: Task 2
-## Events performed
+### Events performed
 - Loaded hives.
 - Edited all fields of Hive 1.
 - Collected the metrics of all hives.
