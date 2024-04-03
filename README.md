@@ -20,7 +20,7 @@ This project interests me because of my experience in beekeeping where I volunte
 - As a user, I want to have the option to **load hives** to file, if chosen, from the main directory.
 - As a user, I want to prompt the user to **save before quitting** the program.
 
-# Instructions for Grader
+## Instructions for Grader
 - You can generate the first required action related to the user story "adding multiple Xs to a Y" by clicking the `add` button found in the header, entering a name and then a location where a hive will appear. Repeat this an arbitrary number of times (this must be repeated at least 11 times to trigger a scrollbar. You can do this quickly by spamming `add`, `enter` key, `enter` key where the name and location will default to a value of `Unspecified`).
 - You can generate the second required action related to the user story "adding multiple Xs to a Y" by loading the program by clicking the `load` button, clicking the `sort` button, selecting `pollen source`, entering `Lavender`, and observing the reordered list from primary pollen, secondary pollen, to irrelevant. The pollen sources can be found below the name of the hive in the format of:
 > Pollens: \<primary pollen source\>; \<secondary pollen source\>
@@ -30,13 +30,13 @@ This project interests me because of my experience in beekeeping where I volunte
 
 *NOTE WHEN EDITING A HIVE: You cannot specify a secondary pollen source until you have specified a primary pollen source. Likewise, you cannot set a primary pollen source to* `Unspecified` *until you have changed the secondary pollen source to* `Unspecified`*.*
 
-# Phase 4: Task 2
-## Events performed
+## Phase 4: Task 2
+### Events performed
 - Loaded hives.
 - Edited all fields of Hive 1.
 - Collected the metrics of all hives.
 
-## Sample
+### Sample
 > The color of Final Hive has been changed to other
 > 
 > The primary pollen source of Final Hive has been changed to Unspecified
@@ -96,6 +96,12 @@ This project interests me because of my experience in beekeeping where I volunte
 > The metrics of hives were collected for Primary Pollen Source
 > 
 > The metrics of hives were collected for Secondary Pollen Source
+
+## Phase 4: Task 3
+If I had more time to work on this project, I would have taken the time to refactor my GUI to use the Singleton pattern for my `DirectoryFrame`. My `DirectoryFrame` has 4 associations which is unideal as 3 of those 4 associations (`HiveField`, `EditFrame`, `DirectoryWindow`) only have an association to access a single method or to simply pass the directory object to other classes. If I had implemented the Singleton pattern for `DirectoryFrame`, my coupling would have been reduced; the Singleton pattern is also appropriate here since there is only one instance of `DirectoryFrame` throughout the entire program. 
+
+Additionally, I would have moved some functionality methods found in `DirectoryFrame` to a different class as the `DirectoryFrame` is supposed to represent the GUI for the main directory and should ideally not include any functionality methods. Moving functionality methods to a different class would result in higher cohesion thus making my program better follow the ‘Single responsibility principle.’ I could have also moved some common methods declared in the `Frames` interface to an abstract class as the classes which implement this interface have near identical method bodies; since classes can only extend one, and only one, class, I was unable to fulfill this design choice.
+
 
 ## Sites Used
 - [Wikimedia](https://commons.wikimedia.org/wiki/File:OpenMoji-black_1F41D.svg) was used under Creative Commons License for logo.
