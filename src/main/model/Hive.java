@@ -67,7 +67,8 @@ public class Hive implements Writable {
 
     // setter methods:
     // MODIFIES: this
-    // EFFECTS: sets the name of the Hive to be the inputted name
+    // EFFECTS: sets the name of the Hive to be the inputted name. Adds an event log stating that the name has been
+    //          edited
     public void setName(String name) {
         EventLog.getInstance().logEvent(new Event("The name of " + this.name + " has been changed to "
                 + name));
@@ -75,7 +76,8 @@ public class Hive implements Writable {
     }
 
     // MODIFIES: this
-    // EFFECTS: sets the location of the Hive to be the inputted location
+    // EFFECTS: sets the location of the Hive to be the inputted location. Adds an event log stating that the location
+    //          has been edited
     public void setLocation(String location) {
         EventLog.getInstance().logEvent(new Event("The location of " + this.name + " has been changed to "
                 + location));
@@ -86,6 +88,7 @@ public class Hive implements Writable {
     // EFFECTS: sets the color of the Hive to be the inputted color.
     //          Distinct values including "golden," "amber," "light," and "dark" are translated to the Color enumeration
     //          If the inputted color does not match any distinct values, color.OTHER is assigned.
+    //          Adds an event log stating that the color has been edited
     public void setColor(String col) {
         if (col.equals("golden")) {
             this.color = Color.GOLDEN;
@@ -105,7 +108,8 @@ public class Hive implements Writable {
     // REQUIRES: primaryPollenSource input is not "Unspecified" when secondaryPollenSource is set to anything other than
     //           "Unspecified" or null
     // MODIFIES: this
-    // EFFECTS: sets the primary pollen source of the Hive to be the inputted primary pollen source
+    // EFFECTS: sets the primary pollen source of the Hive to be the inputted primary pollen source. Adds an event log
+    //          stating that the primary pollen source has been edited
     public void setPrimaryPollenSource(String primaryPollenSource) {
         EventLog.getInstance().logEvent(new Event("The primary pollen source of " + this.name
                 + " has been changed to " + primaryPollenSource));
@@ -114,7 +118,8 @@ public class Hive implements Writable {
 
     // REQUIRES: primaryPollenSource is not Unspecified or null
     // MODIFIES: this
-    // EFFECTS: sets the secondary pollen source of the Hive to be the inputted secondary pollen source
+    // EFFECTS: sets the secondary pollen source of the Hive to be the inputted secondary pollen source. Adds an event
+    //          log stating that the secondary pollen source has been edited
     public void setSecondaryPollenSource(String secondaryPollenSource) {
         EventLog.getInstance().logEvent(new Event("The secondary pollen source of " + this.name
                 + " has been changed to " + secondaryPollenSource));
@@ -122,7 +127,8 @@ public class Hive implements Writable {
     }
 
     // MODIFIES: this
-    // EFFECTS: sets the notes of the Hive to be the inputted notes
+    // EFFECTS: sets the notes of the Hive to be the inputted notes. Adds an event log stating that the notes have been
+    //          edited
     public void setNotes(String notes) {
         EventLog.getInstance().logEvent(new Event("The notes of " + this.name + " has been changed to "
                 + notes));

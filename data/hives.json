@@ -1,13 +1,5 @@
 {"hives": [
     {
-        "notes": "Unspecified",
-        "color": "other",
-        "secondaryPollenSource": "Unspecified",
-        "name": "Final Hive",
-        "location": "Iceland",
-        "primaryPollenSource": "Unspecified"
-    },
-    {
         "notes": "Need pest control ASAP.",
         "color": "other",
         "secondaryPollenSource": "Unspecified",
@@ -22,6 +14,14 @@
         "name": "Hive1",
         "location": "Alberta",
         "primaryPollenSource": "Wild flower"
+    },
+    {
+        "notes": "Unspecified",
+        "color": "other",
+        "secondaryPollenSource": "Unspecified",
+        "name": "Final Hive",
+        "location": "Iceland",
+        "primaryPollenSource": "Unspecified"
     },
     {
         "notes": "Reference!?!?",

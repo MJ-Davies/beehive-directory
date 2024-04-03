@@ -23,7 +23,7 @@ public class Hives implements Writable {
     // REQUIRES: Hive does not already exist with same name
     // MODIFIES: this
     // EFFECTS: Adds a hive to the end of the list with a valid name and location and returns a message declaring that
-    //          hive has been added
+    //          hive has been added. Adds an event log stating that a hive has been added to this.
     public String addHive(String name, String location) {
         listOfHives.addLast(new Hive(name, location));
         String logMsg = name + " has been added to the directory.";
@@ -33,7 +33,8 @@ public class Hives implements Writable {
 
     // REQUIRES: Hive already exists with the same name
     // MODIFIES: this
-    // EFFECTS: Removes a hive with the same name and returns a message declaring that hive has been removed
+    // EFFECTS: Removes a hive with the same name and returns a message declaring that hive has been removed. Adds an
+    //          event log stating that the inputted hive has been removed from this.
     public String removeHive(String name) {
         listOfHives.remove(getPositionInHives(name));
         String logMsg = name + " has been removed from the directory.";
@@ -42,7 +43,8 @@ public class Hives implements Writable {
     }
 
     // MODIFIES: this
-    // EFFECTS: Adds an already existing hive to listOfHives
+    // EFFECTS: Adds an already existing hive to listOfHives. Adds an event log stating that the hive has been added to
+    //          this (i.e. it has been loaded)
     public void addExistingHive(Hive h) {
         listOfHives.addLast(h);
         EventLog.getInstance().logEvent(new Event("Loaded " + h.getName() + " with the location of "
@@ -108,6 +110,7 @@ public class Hives implements Writable {
 
     // EFFECTS: Returns a string for the metrics of a given field specified by the get method (higher order function)
     //          in the form of "value: frequency"
+    //          Adds an event log stating that the metrics were obtained for this hive
     public String getMetricX(Function<Hive, String> getFunc, String metricName) {
         LinkedList<String> uniqueX = getDistinctStringX(getFunc);
         LinkedList<Number> frequencyOfX = getFrequencyOfX(getFunc, uniqueX);
@@ -151,7 +154,8 @@ public class Hives implements Writable {
     }
 
     // MODIFIES: this
-    // EFFECTS: Sorts hives by pollen in the order of primary, secondary, and irrelevant
+    // EFFECTS: Sorts hives by pollen in the order of primary, secondary, and irrelevant. Adds an event log stating that
+    //          all hives have been sorted by the inputted pollen type
     public void sortByPollen(String type) {
         LinkedList<Hive> updatedList = new LinkedList<>();
         int secondaryStartPos = 0;
@@ -172,6 +176,7 @@ public class Hives implements Writable {
     // EFFECTS: returns a string of the hive's name, primary pollen, and secondary pollen in the form of:
     //          "name: primaryPollen, secondaryPollen\n"
     //          If there are no hives, return "No hives to view pollen."
+    //          Adds an event log stating that the hives have been viewed
     public String viewPollens() {
         if (listOfHives.isEmpty()) {
             return "No hives to view pollen.";
@@ -185,7 +190,8 @@ public class Hives implements Writable {
         return message.toString();
     }
 
-    // EFFECTS: Converts hives into a Json object, returns the Json object
+    // EFFECTS: Converts hives into a Json object, returns the Json object. Adds an event log stating that all hives
+    //          have been saved.
     // Modeled from github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo/blob/master/src/main/model/WorkRoom.java
     @Override
     public JSONObject toJson() {
