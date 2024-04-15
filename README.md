@@ -1,4 +1,7 @@
 # Personal Project: Beehive Directory
+A personal project created for a UBC computer science course in 2024.
+
+## Introduction
 This application will contain a directoy used to manage individual hives. The hives will have an arbitrary number of hives with fields including name, location, color, primary pollen source, secondary pollen source, and notes unique to each hive. In a directory, one can add, remove, view, edit, sort, or obtain metrics. Individuals will be able to sort by pollen source in the order of primary, secondary, and irrelevant. Individuals may also get the metrics of the specifications of hives to better improve marketing techniques and resource allocation in practical farm markets.
 
 This project is intended to be used by local Canadian farm markets, but it can also be used by hobby beekeepers or small businesses.
