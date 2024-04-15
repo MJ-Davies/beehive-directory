@@ -12,7 +12,6 @@ import java.util.stream.Stream;
 import org.json.*;
 
 // Reads Json file from file destination and converts it to an object accessible by Java
-// Modeled from github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo/blob/master/src/main/persistence/JsonReader.java
 public class JsonReader {
     private String relativeSourcePath;
 
