@@ -18,8 +18,6 @@ import java.io.IOException;
 
 // The main frame for the directory
 // Code was modeled from https://youtu.be/Kmgo00avvEw?si=j-behtRv18UqwODt
-// Some method were modeled from (related methods include this citation under their specifications):
-// github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo/blob/master/src/main/ui/WorkRoomApp.java
 public class DirectoryFrame extends JFrame implements Frames {
     private static final String JSON_FILE_DESTINATION = "./data/hives.json";
     private static final int WIDTH = 900;
@@ -252,7 +250,6 @@ public class DirectoryFrame extends JFrame implements Frames {
     }
 
     // EFFECTS: Saves the hives in this directory to file destination
-    // Modelled from github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo/blob/master/src/main/ui/WorkRoomApp.java
     public void saveHives() {
         try {
             writer.open();
@@ -270,7 +267,6 @@ public class DirectoryFrame extends JFrame implements Frames {
 
     // MODIFIES: this
     // EFFECTS: Loads hives from file destination
-    // Modelled from github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo/blob/master/src/main/ui/WorkRoomApp.java
     public void loadHives() {
         try {
             hives = reader.read();
