@@ -52,7 +52,6 @@ public class Hive implements Writable {
     }
 
     // EFFECTS: Converts hive into a Json Object
-    // Modeled from github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo/blob/master/src/main/model/Thingy.java
     @Override
     public JSONObject toJson() {
         JSONObject hiveJsonObject = new JSONObject();
