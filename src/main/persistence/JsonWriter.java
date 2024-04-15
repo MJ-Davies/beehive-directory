@@ -7,7 +7,6 @@ import org.json.JSONObject;
 import java.io.*;
 
 // Writes the writable objects from the program's state to json file destination
-// Modeled from github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo/blob/master/src/main/persistence/JsonWriter.java
 public class JsonWriter {
     private static final int TAB = 4; // 4 is used to abide with checkstyle indentation of 4 whitespaces
     private PrintWriter writer;
